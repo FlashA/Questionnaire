@@ -3,9 +3,9 @@ package com.flash.questionnaire;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+
+import com.flash.questionnaire.Design.DesignActivity;
 
 public class MainActivity extends AppCompatActivity {
 
