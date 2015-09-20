@@ -26,7 +26,9 @@ public class DesignActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 startActivity(new Intent(DesignActivity.this, MenuActivity.class));
+                finish();
             }
         }.start();
+
     }
 }
