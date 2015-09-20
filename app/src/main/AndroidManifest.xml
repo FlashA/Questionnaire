@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DesignActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".FuncActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>
