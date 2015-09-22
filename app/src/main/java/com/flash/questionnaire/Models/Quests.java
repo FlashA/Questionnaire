@@ -1,23 +1,22 @@
 package com.flash.questionnaire.Models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
-
-import retrofit.client.Response;
 
 /**
  * Created by fdh on 20.09.15.
  */
 public class Quests {
-    public List<Response> getResponse() {
-        return response;
+
+    @SerializedName("quest")
+    @Expose
+    private QuestsInfo questsInfo;
+
+    public QuestsInfo getQuestsInfo() {
+        return questsInfo;
     }
 
-    public void setResponse(List<Response> response) {
-        this.response = response;
+    public void setQuestsInfo(QuestsInfo questsInfo) {
+        this.questsInfo = questsInfo;
     }
-
-    @SerializedName("response")
-    List<Response> response;
 }

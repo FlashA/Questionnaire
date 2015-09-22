@@ -1,17 +1,54 @@
 package com.flash.questionnaire.Models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by fdh on 20.09.15.
  */
-public class Response {
+public class QuestsInfo {
 
-    public String getId() {
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+
+    @SerializedName("name")
+    @Expose
+    private String name;
+
+    @SerializedName("sex")
+    @Expose
+    private String sex;
+
+    @SerializedName("fio")
+    @Expose
+    private String fio;
+
+    @SerializedName("prev_quest")
+    @Expose
+    private String prev_quest;
+
+    @SerializedName("ref")
+    @Expose
+    private String ref;
+
+    @SerializedName("rev")
+    @Expose
+    private String rev;
+
+    @SerializedName("mail")
+    @Expose
+    private String mail;
+
+    @SerializedName("tel")
+    @Expose
+    private String tel;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -78,31 +115,4 @@ public class Response {
     public void setTel(String tel) {
         this.tel = tel;
     }
-
-    @SerializedName("id")
-    String id;
-
-    @SerializedName("name")
-    String name;
-
-    @SerializedName("sex")
-    String sex;
-
-    @SerializedName("fio")
-    String fio;
-
-    @SerializedName("prev_quest")
-    String prev_quest;
-
-    @SerializedName("ref")
-    String ref;
-
-    @SerializedName("rev")
-    String rev;
-
-    @SerializedName("mail")
-    String mail;
-
-    @SerializedName("tel")
-    String tel;
 }

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.flash.questionnaire.Services.UpdateInfo;
 
@@ -20,9 +21,11 @@ public class FuncActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_func);
+        startService();
     }
 
     public void startService(){
+        Log.d("my_app", "startService");
         startService(new Intent(this, UpdateInfo.class));
         Calendar cal = Calendar.getInstance();
         Intent intent = new Intent(this, UpdateInfo.class);
