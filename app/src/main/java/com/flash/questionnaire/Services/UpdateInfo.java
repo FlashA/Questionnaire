@@ -10,6 +10,8 @@ import com.flash.questionnaire.API.API;
 import com.flash.questionnaire.Models.Quests;
 import com.flash.questionnaire.Utils.Constants;
 
+import java.net.InetAddress;
+
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -27,7 +29,10 @@ public class UpdateInfo extends Service {
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return super.onStartCommand(intent, flags, startId);
+        if(isInternetAvailable()){
+            getQuests();
+        }
+        return START_NOT_STICKY;
     }
 
     public void onDestroy() {
@@ -65,5 +70,19 @@ public class UpdateInfo extends Service {
                 .setEndpoint(Constants.API_URL)
                 .build();
         API api = restAdapter.create(API.class);
+    }
+
+    public boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("http://www.yandex.ru");
+            if (ipAddr.equals("")) {
+                return false;
+            } else {
+                return true;
+            }
+
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
