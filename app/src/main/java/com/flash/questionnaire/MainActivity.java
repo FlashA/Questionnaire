@@ -23,5 +23,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, DesignActivity.class));
     }
 
-
+    @Override
+    public void onBackPressed() {
+        // здесь ничего не делаем
+    }
 }

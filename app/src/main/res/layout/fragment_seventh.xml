@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_first"
+    android:id="@+id/fragment_seventh"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
@@ -20,45 +20,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Выберите пол (Ответ обязателен)"
+            android:text="Спасибо за то, что Вы выбрали квесты Взаперти! Мы бы хотели сообщать вам об открытии новых квестов, для этого укажите свой номер телефона."
             android:id="@+id/textView2"
             android:textSize="24sp"
             android:textColor="@color/text_main" />
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:id="@+id/linearLayout_buttons">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:text="Мужской"
-            android:padding="50dp"
-            android:layout_marginRight="10dp"
-            android:id="@+id/button_m"
+            android:id="@+id/editText_f"
+            android:backgroundTint="@color/text_main"
+            android:hint="Номер телефона"
+            android:inputType="textEmailAddress"
             android:textColor="@color/text_main"
-            android:background="@color/blue"
-            android:textSize="24dp" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:text="Женский"
-            android:padding="50dp"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="end"
-            android:id="@+id/button_f"
-            android:textColor="@color/text_main"
-            android:background="@color/red"
-            android:textSize="24dp" />
-
-        </LinearLayout>
-
+            android:textCursorDrawable="@null"
+            android:textColorHint="@color/text_main" />
     </LinearLayout>
 
 
@@ -75,4 +51,15 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="30dp"/>
 
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Предыдущий вопрос"
+        android:id="@+id/button_previous"
+        android:background="@color/button_green"
+        android:textColor="@color/text_main"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="30dp"/>
 </RelativeLayout>

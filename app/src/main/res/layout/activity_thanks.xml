@@ -42,7 +42,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Спасибо за внимание!"
+            android:text="Спасибо за уделенное время!"
             android:id="@+id/textView"
             android:textSize="40sp"
 
@@ -50,6 +50,18 @@
             android:layout_centerHorizontal="true"
             android:textColor="@color/text_main" />
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Будем рады видеть Вас вновь!"
+            android:id="@+id/textView1"
+            android:textSize="40sp"
+
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:textColor="@color/text_main" />
 
     </RelativeLayout>
 
