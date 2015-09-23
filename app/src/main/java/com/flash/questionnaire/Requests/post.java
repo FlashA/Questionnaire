@@ -1,6 +1,9 @@
 package com.flash.questionnaire.Requests;
 
+import android.content.Context;
+
 import com.flash.questionnaire.Models.Status;
+import com.flash.questionnaire.SQLite.DBDataHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,10 +34,12 @@ public class post {
 
     private Status status;
 
+    private DBDataHelper DBHelper;
+
     public post(String url, String sex,
                 String fio, String prev_quest,
                 String ref, String rev,
-                String mail, String tel){
+                String mail, String tel, final Context context){
         this.url = url;
         this.sex = sex;
         this.fio = fio;
@@ -47,7 +52,11 @@ public class post {
             @Override
             public void run() {
                 try {
-                    sendPost();
+                    if(sendPost()){
+                        // если POST-запрос отправлен, чистим базу
+                        DBHelper = new DBDataHelper(context);
+                        DBHelper.clearTableUsers();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -55,7 +64,7 @@ public class post {
         }).start();
     }
 
-    public void sendPost() throws Exception  {
+    public boolean sendPost() throws Exception  {
         try{
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -85,12 +94,11 @@ public class post {
                 response.append(inputLine);
             }
             in.close();
-
-            System.out.println(response.toString());
             parseJSON(response.toString());
-
+            return true;
         } catch (IOException e){
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -104,5 +112,4 @@ public class post {
             e.printStackTrace();
         }
     }
-
 }

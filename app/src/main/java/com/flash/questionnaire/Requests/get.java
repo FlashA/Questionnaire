@@ -1,6 +1,9 @@
 package com.flash.questionnaire.Requests;
 
+import android.content.Context;
+
 import com.flash.questionnaire.Models.Quest;
+import com.flash.questionnaire.SQLite.DBDataHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +35,9 @@ public class get {
 
     private Quest quest;
 
-    public get(final String url){
+    private DBDataHelper DBHelper;
+
+    public get(final String url, final Context context){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -40,7 +45,12 @@ public class get {
                     URL uri = new URL(url);
                     HttpURLConnection con = (HttpURLConnection) uri.openConnection();
                     readStream(con.getInputStream());
-                    parseJSON(getResult());
+                    if(parseJSON(getResult())){
+                        // если данные получены, чистим базу
+                        DBHelper = new DBDataHelper(context);
+                        DBHelper.clearTableQuests();
+                        DBHelper.clearTableIssue();
+                    }
                 } catch (Exception e){
                     e.printStackTrace();
                 }
@@ -48,7 +58,7 @@ public class get {
         }).start();
     }
 
-    public void parseJSON(String json){
+    public boolean parseJSON(String json){
         JSONObject object;
         try{
             object = new JSONObject(json);
@@ -71,8 +81,10 @@ public class get {
 
                 quest = new Quest(id, name, sex, fio, prev_quest, ref, rev, mail, tel);
             }
+            return true;
         } catch (JSONException e){
             e.printStackTrace();
+            return false;
         }
     }
 

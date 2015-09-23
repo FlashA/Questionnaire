@@ -26,8 +26,11 @@ public class UpdateInfo extends Service {
 
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(isOnline()){
-            getQuests = new get("http://quest.dev.sete.pw/api/quest.getList");
-            mPost = new post("http://quest.dev.sete.pw/api/user.add", "М", "Максимов Антон", "1", "2", "3", "4", "000");
+            getQuests = new get("http://quest.dev.sete.pw/api/quest.getList", getApplicationContext());
+
+            mPost = new post("http://quest.dev.sete.pw/api/user.add",
+                    "М", "Максимов Антон", "1", "2", "3", "4", "000",
+                    getApplicationContext());
         } else{
             Log.d("my_app", "noInternet");
         }
