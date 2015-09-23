@@ -1,16 +1,20 @@
 package com.flash.questionnaire.Design;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
 
+import com.flash.questionnaire.Kiosk.StatusBarManager;
+import com.flash.questionnaire.QuestionnaireApplication;
 import com.flash.questionnaire.R;
+import com.flash.questionnaire.Utils.Constants;
+import com.flash.questionnaire.Utils.ContextHelper;
 
 /**
  * Created by Anton on 20.09.2015.
  */
-public class DesignActivity extends AppCompatActivity {
+public class DesignActivity extends QuestionnaireApplication {
 
 
     @Override
@@ -30,5 +34,10 @@ public class DesignActivity extends AppCompatActivity {
             }
         }.start();
 
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hideStatusBar(this);
     }
 }

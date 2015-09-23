@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void design (View v) {
+        finish();
         startActivity(new Intent(this, DesignActivity.class));
     }
 

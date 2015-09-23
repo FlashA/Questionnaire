@@ -2,20 +2,24 @@ package com.flash.questionnaire.Design;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.flash.questionnaire.Fragments.FirstFragment;
 import com.flash.questionnaire.Fragments.SecondFragment;
+import com.flash.questionnaire.Kiosk.StatusBarManager;
+import com.flash.questionnaire.QuestionnaireApplication;
 import com.flash.questionnaire.R;
+import com.flash.questionnaire.Utils.Constants;
+import com.flash.questionnaire.Utils.ContextHelper;
 
 /**
  * Created by Anton on 20.09.2015.
  */
-public class QuestionnaireActivity extends AppCompatActivity {
+public class QuestionnaireActivity extends QuestionnaireApplication {
 
     private FrameLayout container;
 
@@ -23,12 +27,13 @@ public class QuestionnaireActivity extends AppCompatActivity {
 
     private FirstFragment fragmentLogin;
 
+    StatusBarManager statusBarManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire);
-
         container = (FrameLayout) findViewById(R.id.container);
 
 
@@ -54,6 +59,11 @@ public class QuestionnaireActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hideStatusBar(this);
+    }
 
     public void next(View v){
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -70,4 +80,23 @@ public class QuestionnaireActivity extends AppCompatActivity {
         startActivity(new Intent(this, ThanksActivity.class));
         finish();
     }
+
+
+/*    protected void hideStatusBar(Context context) {
+        statusBarManager = new StatusBarManager(context);
+        statusBarManager.hide();
+    }
+
+    protected void showStatusBar() {
+        statusBarManager.show();
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        showStatusBar();
+    }
+*/
+
 }

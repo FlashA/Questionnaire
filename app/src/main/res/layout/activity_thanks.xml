@@ -34,10 +34,23 @@
             android:onClick="restart"
             android:layout_gravity="center_horizontal"
             android:background="@color/button_green"
-            android:layout_marginBottom="80dp"
             android:textColor="@color/text_main"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignParentStart="true"
+            android:layout_margin="40dp" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Выход из приложения"
+            android:id="@+id/button_exit"
+            android:onClick="exit"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/button_green"
+            android:textColor="@color/text_main"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="40dp" />
 
         <TextView
             android:layout_width="wrap_content"
