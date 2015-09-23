@@ -2,7 +2,6 @@ package com.flash.questionnaire.Design;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,10 +10,7 @@ import android.widget.FrameLayout;
 import com.flash.questionnaire.Fragments.FirstFragment;
 import com.flash.questionnaire.Fragments.SecondFragment;
 import com.flash.questionnaire.Kiosk.StatusBarManager;
-import com.flash.questionnaire.QuestionnaireApplication;
 import com.flash.questionnaire.R;
-import com.flash.questionnaire.Utils.Constants;
-import com.flash.questionnaire.Utils.ContextHelper;
 
 /**
  * Created by Anton on 20.09.2015.

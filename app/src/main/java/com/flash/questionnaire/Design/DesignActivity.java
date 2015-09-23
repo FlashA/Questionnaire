@@ -1,15 +1,10 @@
 package com.flash.questionnaire.Design;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
-import com.flash.questionnaire.Kiosk.StatusBarManager;
-import com.flash.questionnaire.QuestionnaireApplication;
 import com.flash.questionnaire.R;
-import com.flash.questionnaire.Utils.Constants;
-import com.flash.questionnaire.Utils.ContextHelper;
 
 /**
  * Created by Anton on 20.09.2015.
