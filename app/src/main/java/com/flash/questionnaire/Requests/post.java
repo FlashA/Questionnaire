@@ -1,5 +1,10 @@
 package com.flash.questionnaire.Requests;
 
+import com.flash.questionnaire.Models.Status;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -22,6 +27,9 @@ public class post {
     private String tel;
 
     private String url;
+    private String mStatus;
+
+    private Status status;
 
     public post(String url, String sex,
                 String fio, String prev_quest,
@@ -79,8 +87,20 @@ public class post {
             in.close();
 
             System.out.println(response.toString());
+            parseJSON(response.toString());
 
         } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void parseJSON(String json){
+        JSONObject object = null;
+        try{
+            object = new JSONObject(json);
+            mStatus = object.getString("status");
+            status = new Status(mStatus);
+        } catch (JSONException e){
             e.printStackTrace();
         }
     }
