@@ -33,7 +33,9 @@ public class ThanksActivity extends QuestionnaireApplication {
     }
 
     public void exit(View v) {
-        showChooser();
+        ExitDialog dialog = new ExitDialog();
+        dialog.setContext(this);
+        dialog.show(getFragmentManager(), "quest");
 
     }
 /*    protected void hideStatusBar(Context context) {

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class DBDataHelper {
 	
-	private static final String DB_NAME = "quests.sqlite";
+	private static final String DB_NAME = "questd.sqlite";
 	
 	private SQLiteDatabase database;
 	private Context context;
@@ -128,5 +128,15 @@ public class DBDataHelper {
 
 	public void clearTableQuests(){
 		database.execSQL("DELETE FROM " + TABLE_NAME_QUESTS);
+	}
+
+	public String getPassword() {
+		String pass = null;
+		String query = "SELECT pass FROM admin WHERE id = 1";
+		Cursor cursor = database.rawQuery(query, null);
+		cursor.moveToFirst();
+		pass = cursor.getString(0);
+		cursor.close();
+		return pass;
 	}
 }

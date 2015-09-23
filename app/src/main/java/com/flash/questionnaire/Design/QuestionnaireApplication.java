@@ -1,5 +1,6 @@
 package com.flash.questionnaire.Design;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +45,18 @@ public class QuestionnaireApplication extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        appToFront();
+    }
+    protected void appToFront() {
+        ActivityManager activityManager = (ActivityManager) getApplicationContext()
+                .getSystemService(Context.ACTIVITY_SERVICE);
+
+        activityManager.moveTaskToFront(getTaskId(), 0);
     }
 
 }
