@@ -1,54 +1,39 @@
 package com.flash.questionnaire.Models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 /**
- * Created by fdh on 20.09.15.
+ * Created by Jahfgk on 23.09.2015.
  */
-public class QuestsInfo {
-
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-
-    @SerializedName("name")
-    @Expose
+public class Quest {
+    private String id;
     private String name;
-
-    @SerializedName("sex")
-    @Expose
     private String sex;
-
-    @SerializedName("fio")
-    @Expose
     private String fio;
-
-    @SerializedName("prev_quest")
-    @Expose
     private String prev_quest;
-
-    @SerializedName("ref")
-    @Expose
     private String ref;
-
-    @SerializedName("rev")
-    @Expose
     private String rev;
-
-    @SerializedName("mail")
-    @Expose
     private String mail;
-
-    @SerializedName("tel")
-    @Expose
     private String tel;
 
-    public Integer getId() {
+    public Quest(String id, String name,
+                 String sex, String fio,
+                 String prev_quest, String ref,
+                 String rev, String mail, String tel){
+        this.id = id;
+        this.name = name;
+        this.sex = sex;
+        this.fio = fio;
+        this.prev_quest = prev_quest;
+        this.ref = ref;
+        this.rev = rev;
+        this.mail = mail;
+        this.tel = tel;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
