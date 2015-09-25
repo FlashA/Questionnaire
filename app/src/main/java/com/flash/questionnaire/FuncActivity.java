@@ -6,8 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.View;
 
+import com.flash.questionnaire.SQLite.DBDataHelper;
 import com.flash.questionnaire.Services.UpdateInfo;
 
 import java.util.Calendar;
@@ -17,15 +18,28 @@ import java.util.Calendar;
  */
 public class FuncActivity extends AppCompatActivity {
 
+    private DBDataHelper DBHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_func);
         startService();
+        DBHelper = new DBDataHelper(getApplicationContext());
+    }
+
+    public void onClick(View v){
+        //Toast.makeText(getApplicationContext(), DBHelper.getQuestions(4, 1), Toast.LENGTH_SHORT).show();
+        //Log.d("my_app", "Название квеста: " + DBHelper.getQuests().get(0));
+    }
+
+    public void checkData(){
+        if(!DBHelper.getSizes()){
+            // зпаустить диалог
+        }
     }
 
     public void startService(){
-        Log.d("my_app", "startService");
         startService(new Intent(this, UpdateInfo.class));
         Calendar cal = Calendar.getInstance();
         Intent intent = new Intent(this, UpdateInfo.class);

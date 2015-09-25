@@ -37,9 +37,9 @@ public class post {
     private DBDataHelper DBHelper;
 
     public post(String url, String sex,
-                String fio, String prev_quest,
+                final String fio, String prev_quest,
                 String ref, String rev,
-                String mail, String tel, final Context context){
+                final String mail, final String tel, final Context context){
         this.url = url;
         this.sex = sex;
         this.fio = fio;
@@ -48,14 +48,13 @@ public class post {
         this.rev = rev;
         this.mail = mail;
         this.tel = tel;
+        DBHelper = new DBDataHelper(context);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    if(sendPost()){
-                        // если POST-запрос отправлен, чистим базу
-                        DBHelper = new DBDataHelper(context);
-                        DBHelper.clearTableUsers();
+                    if(sendPost() && status.getStatus().equals("success")){
+                        DBHelper.clearRecordUser(mail);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

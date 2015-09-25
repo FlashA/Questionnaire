@@ -5,9 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 public class DBDataHelper {
 	
-	private static final String DB_NAME = "questd.sqlite";
+	private static final String DB_NAME = "quest.sqlite";
 	
 	private SQLiteDatabase database;
 	private Context context;
@@ -26,72 +28,51 @@ public class DBDataHelper {
 	 	database = dbOpenHelper.openDataBase();
 	}
 
-	public String getQuestion(int id) {
-		String question = null;
-	    String query = "SELECT desc_quest FROM questions WHERE id_quest=" + id;
+	public boolean getSizes() {
+		int quest = 0;
+		int issue = 0;
+		String query_quests = "SELECT COUNT(*) FROM quests";
+		String query_issue = "SELECT COUNT(*) FROM issue";
+		Cursor cursor_quests = database.rawQuery(query_quests, null);
+		Cursor cursor_issue = database.rawQuery(query_issue, null);
+		cursor_quests.moveToFirst();
+		cursor_issue.moveToFirst();
+		quest = cursor_quests.getInt(0);
+		issue = cursor_quests.getInt(0);
+		cursor_quests.close();
+		cursor_issue.close();
+		if(quest!= 0 && issue!=0){
+			return true;
+		} else{
+			return false;
+		}
+	}
+	public ArrayList<String> getQuests() {
+		ArrayList<String> list = new ArrayList<String>();
+		String query = "SELECT name FROM quests";
 		Cursor cursor = database.rawQuery(query, null);
-		cursor.moveToFirst();
+		if (cursor.moveToFirst()) {
+			do {
+				list.add(cursor.getString(0));
+			} while (cursor.moveToNext());
+		}
+		cursor.close();
+		return list;
+	}
+
+	public String getQuestions(int idQuest, int row) {
+		String question = null;
+		String query = "SELECT name FROM issue WHERE id_quest=" + idQuest;
+		Cursor cursor = database.rawQuery(query, null);
+		cursor.moveToPosition(row-1);
 		question = cursor.getString(0);
 		cursor.close();
 		return question;
 	}
 
-	public int getSize() {
-		int question = 0;
-		String query = "SELECT COUNT(*) FROM questions";
-		Cursor cursor = database.rawQuery(query, null);
-		cursor.moveToFirst();
-		question = cursor.getInt(0);
-		cursor.close();
-		return question;
-	}
-
-	public int getSizeTempTable() {
-		int question = 0;
-		String query = "SELECT COUNT(*) FROM temp";
-		Cursor cursor = database.rawQuery(query, null);
-		cursor.moveToFirst();
-		question = cursor.getInt(0);
-		cursor.close();
-		return question;
-	}
-
-    public int getRightAnswer(int id) {
-        int rightAnswer = 0;
-        String query = "SELECT answer FROM answers WHERE id_desc=" + id;
-        Cursor cursor = database.rawQuery(query, null);
-        cursor.moveToFirst();
-        rightAnswer = cursor.getInt(0);
-        cursor.close();
-        return rightAnswer;
-    }
-
-	public int getUserAnswer(int id_desc) {
-		int userAnswer = 0;
-		String query = "SELECT id_answer FROM temp WHERE id_desc=" + id_desc;
-		Cursor cursor = database.rawQuery(query, null);
-		cursor.moveToFirst();
-		userAnswer = cursor.getInt(0);
-		cursor.close();
-		return userAnswer;
-	}
-
-	public boolean getUserAnswerBoolean(int id_desc) {
-		String query = "SELECT id_answer FROM temp WHERE id_desc=" + id_desc;
-		Cursor cursor = database.rawQuery(query, null);
-		cursor.moveToFirst();
-		if (cursor.getCount()==0) {
-			cursor.close();
-			return false;
-		} else {
-			cursor.close();
-			return true;
-		}
-	}
-
-
-	public void addQuests(String nameQuest){
+	public void addQuests(String id, String nameQuest){
 		ContentValues values = new ContentValues();
+		values.put("id", id);
 		values.put("name", nameQuest);
 		database.insert(TABLE_NAME_QUESTS, null, values);
 	}
@@ -106,15 +87,14 @@ public class DBDataHelper {
 	public void addUserAnswers(String sex, String fio,
 							   String prev_quest, String ref,
 							   String rev, String mail, String tel){
-
 		ContentValues values = new ContentValues();
 		values.put("sex", sex);
-		values.put("sex", fio);
-		values.put("sex", prev_quest);
-		values.put("sex", ref);
-		values.put("sex", rev);
-		values.put("sex", mail);
-		values.put("sex", tel);
+		values.put("fio", fio);
+		values.put("prev_quest", prev_quest);
+		values.put("ref", ref);
+		values.put("rev", rev);
+		values.put("mail", mail);
+		values.put("tel", tel);
 		database.insert(TABLE_NAME_USERS, null, values);
 	}
 
@@ -122,8 +102,8 @@ public class DBDataHelper {
 		database.execSQL("DELETE FROM " + TABLE_NAME_ISSUE);
 	}
 
-	public void clearTableUsers(){
-		database.execSQL("DELETE FROM " + TABLE_NAME_USERS);
+	public void clearRecordUser(String mail){
+		database.delete("users", "mail = " + mail, null);
 	}
 
 	public void clearTableQuests(){

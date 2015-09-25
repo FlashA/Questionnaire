@@ -4,6 +4,7 @@ package com.flash.questionnaire.Models;
  * Created by Jahfgk on 23.09.2015.
  */
 public class Quest {
+
     private String id;
     private String name;
     private String sex;
@@ -14,20 +15,7 @@ public class Quest {
     private String mail;
     private String tel;
 
-    public Quest(String id, String name,
-                 String sex, String fio,
-                 String prev_quest, String ref,
-                 String rev, String mail, String tel){
-        this.id = id;
-        this.name = name;
-        this.sex = sex;
-        this.fio = fio;
-        this.prev_quest = prev_quest;
-        this.ref = ref;
-        this.rev = rev;
-        this.mail = mail;
-        this.tel = tel;
-    }
+    public Quest(){}
 
     public String getId() {
         return id;

@@ -21,23 +21,13 @@ import java.net.URL;
  */
 public class get {
 
-    private String id;
-    private String name;
-    private String sex;
-    private String fio;
-    private String prev_quest;
-    private String ref;
-    private String rev;
-    private String mail;
-    private String tel;
-
     public String result;
 
     private Quest quest;
-
     private DBDataHelper DBHelper;
 
     public get(final String url, final Context context){
+        DBHelper = new DBDataHelper(context);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -46,10 +36,7 @@ public class get {
                     HttpURLConnection con = (HttpURLConnection) uri.openConnection();
                     readStream(con.getInputStream());
                     if(parseJSON(getResult())){
-                        // если данные получены, чистим базу
-                        DBHelper = new DBDataHelper(context);
-                        DBHelper.clearTableQuests();
-                        DBHelper.clearTableIssue();
+
                     }
                 } catch (Exception e){
                     e.printStackTrace();
@@ -65,21 +52,32 @@ public class get {
             JSONArray response = object.getJSONArray("response");
 
             for(int u=0; u<response.length(); u++){
+                quest = new Quest();
                 JSONObject respons = response.getJSONObject(u);
 
                 JSONObject quests = respons.getJSONObject("quest");
 
-                id = quests.getString("id");
-                name = quests.getString("name");
-                sex = quests.getString("sex");
-                fio = quests.getString("fio");
-                prev_quest = quests.getString("prev_quest");
-                ref = quests.getString("ref");
-                rev = quests.getString("rev");
-                mail = quests.getString("mail");
-                tel = quests.getString("tel");
+                quest.setId(quests.getString("id"));
+                quest.setName(quests.getString("name"));
+                quest.setSex(quests.getString("sex"));
+                quest.setFio(quests.getString("fio"));
+                quest.setPrev_quest(quests.getString("prev_quest"));
+                quest.setRef(quests.getString("ref"));
+                quest.setRev(quests.getString("rev"));
+                quest.setMail(quests.getString("mail"));
+                quest.setTel(quests.getString("tel"));
 
-                quest = new Quest(id, name, sex, fio, prev_quest, ref, rev, mail, tel);
+                DBHelper.clearTableQuests();
+                DBHelper.clearTableIssue();
+
+                DBHelper.addQuests(quest.getId(), quest.getName());
+                DBHelper.addIssue(quest.getId(), quest.getSex());
+                DBHelper.addIssue(quest.getId(), quest.getFio());
+                DBHelper.addIssue(quest.getId(), quest.getPrev_quest());
+                DBHelper.addIssue(quest.getId(), quest.getRef());
+                DBHelper.addIssue(quest.getId(), quest.getRev());
+                DBHelper.addIssue(quest.getId(), quest.getMail());
+                DBHelper.addIssue(quest.getId(), quest.getTel());
             }
             return true;
         } catch (JSONException e){

@@ -9,8 +9,11 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.flash.questionnaire.Models.Quest;
 import com.flash.questionnaire.Requests.get;
 import com.flash.questionnaire.Requests.post;
+import com.flash.questionnaire.SQLite.DBDataHelper;
+import com.flash.questionnaire.Utils.Constants;
 
 /**
  * Created by fdh on 20.09.15.
@@ -20,17 +23,19 @@ public class UpdateInfo extends Service {
     private get getQuests;
     private post mPost;
 
+    private DBDataHelper DBHelper;
+    private Quest mQuest;
+
     public void onCreate() {
         super.onCreate();
+        DBHelper = new DBDataHelper(getApplicationContext());
+        mQuest = new Quest();
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(isOnline()){
-            getQuests = new get("http://quest.dev.sete.pw/api/quest.getList", getApplicationContext());
-
-            mPost = new post("http://quest.dev.sete.pw/api/user.add",
-                    "М", "Максимов Антон", "1", "2", "3", "4", "000",
-                    getApplicationContext());
+            addQuests();
+            addUsers();
         } else{
             Log.d("my_app", "noInternet");
         }
@@ -39,6 +44,15 @@ public class UpdateInfo extends Service {
 
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    public void addUsers(){
+        mPost = new post(Constants.API_URL_POST, "М", "Максимов Антон", "1", "2", "3", "4", "000",
+                getApplicationContext());
+    }
+
+    public void addQuests(){
+        getQuests = new get(Constants.API_URL_GET, getApplicationContext());
     }
 
     @Nullable
