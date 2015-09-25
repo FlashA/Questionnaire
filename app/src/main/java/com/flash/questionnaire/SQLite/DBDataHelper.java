@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.flash.questionnaire.Utils.Constants;
+
 import java.util.ArrayList;
 
 public class DBDataHelper {
@@ -14,10 +16,6 @@ public class DBDataHelper {
 	private SQLiteDatabase database;
 	private Context context;
 
-	public static final String TABLE_NAME_ISSUE = "issue";
-	public static final String TABLE_NAME_QUESTS = "quests";
-	public static final String TABLE_NAME_USERS = "users";
-	
 	public DBDataHelper(Context context) {
 		this.context = context;
 		openDB();
@@ -74,14 +72,14 @@ public class DBDataHelper {
 		ContentValues values = new ContentValues();
 		values.put("id", id);
 		values.put("name", nameQuest);
-		database.insert(TABLE_NAME_QUESTS, null, values);
+		database.insert(Constants.TABLE_NAME_QUESTS, null, values);
 	}
 
 	public void addIssue(String idQuest, String issueName){
 		ContentValues values = new ContentValues();
 		values.put("id_quest", idQuest);
 		values.put("name", issueName);
-		database.insert(TABLE_NAME_ISSUE, null, values);
+		database.insert(Constants.TABLE_NAME_ISSUE, null, values);
 	}
 
 	public void addUserAnswers(String sex, String fio,
@@ -95,11 +93,11 @@ public class DBDataHelper {
 		values.put("rev", rev);
 		values.put("mail", mail);
 		values.put("tel", tel);
-		database.insert(TABLE_NAME_USERS, null, values);
+		database.insert(Constants.TABLE_NAME_USERS, null, values);
 	}
 
 	public void clearTableIssue(){
-		database.execSQL("DELETE FROM " + TABLE_NAME_ISSUE);
+		database.execSQL("DELETE FROM " + Constants.TABLE_NAME_ISSUE);
 	}
 
 	public void clearRecordUser(String mail){
@@ -107,7 +105,7 @@ public class DBDataHelper {
 	}
 
 	public void clearTableQuests(){
-		database.execSQL("DELETE FROM " + TABLE_NAME_QUESTS);
+		database.execSQL("DELETE FROM " + Constants.TABLE_NAME_QUESTS);
 	}
 
 	public String getPassword() {
