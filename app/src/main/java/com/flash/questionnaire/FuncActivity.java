@@ -30,7 +30,6 @@ public class FuncActivity extends AppCompatActivity {
     }
 
     public void onClick(View v){
-        //Toast.makeText(getApplicationContext(), DBHelper.getQuestions(4, 1), Toast.LENGTH_SHORT).show();
         String listQuest = "";
         for(String s: DBHelper.getQuests()) listQuest += s + "\t";
         Log.d("my_app", "Название квеста: " + listQuest);

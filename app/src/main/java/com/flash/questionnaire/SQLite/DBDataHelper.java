@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.flash.questionnaire.Models.Quest;
+import com.flash.questionnaire.Models.UsersData;
 import com.flash.questionnaire.Utils.Constants;
 
 import java.util.ArrayList;
@@ -27,11 +28,31 @@ public class DBDataHelper {
 	 	database = dbOpenHelper.openDataBase();
 	}
 
+	public ArrayList<UsersData> getUsers(){
+		ArrayList<UsersData> users = new ArrayList<UsersData>();
+		String query = "SELECT * FROM " + Constants.TABLE_NAME_USERS;
+		Cursor cursor = database.rawQuery(query, null);
+		if(cursor.moveToFirst()){
+			do{
+				UsersData usersData = new UsersData();
+				usersData.setSex(cursor.getString(1));
+				usersData.setFio(cursor.getString(2));
+				usersData.setPrev_quest(cursor.getString(3));
+				usersData.setRef(cursor.getString(4));
+				usersData.setRev(cursor.getString(5));
+				usersData.setMail(cursor.getString(6));
+				usersData.setTel(cursor.getString(7));
+				users.add(usersData);
+			} while(cursor.moveToNext());
+		}
+		return users;
+	}
+
 	public boolean getSizes() {
 		int quest = 0;
 		int issue = 0;
-		String query_quests = "SELECT COUNT(*) FROM quests";
-		String query_issue = "SELECT COUNT(*) FROM issue";
+		String query_quests = "SELECT COUNT(*) FROM " + Constants.TABLE_NAME_QUESTS;
+		String query_issue = "SELECT COUNT(*) FROM " + Constants.TABLE_NAME_ISSUE;
 		Cursor cursor_quests = database.rawQuery(query_quests, null);
 		Cursor cursor_issue = database.rawQuery(query_issue, null);
 		cursor_quests.moveToFirst();

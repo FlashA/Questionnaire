@@ -51,7 +51,7 @@ public class post {
             @Override
             public void run() {
                 try {
-                    if(sendPost() && getStatus(response.toString())){
+                    if(sendPost()){
                         DBHelper.clearRecordUser(mail);
                     }
                 } catch (Exception e) {
@@ -91,7 +91,8 @@ public class post {
                 response.append(inputLine);
             }
             in.close();
-            return true;
+            if(getStatus(response.toString())) return true;
+            else return false;
         } catch (IOException e){
             e.printStackTrace();
             return false;
