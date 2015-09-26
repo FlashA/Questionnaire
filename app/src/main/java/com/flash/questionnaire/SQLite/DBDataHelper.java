@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.flash.questionnaire.Models.Quest;
 import com.flash.questionnaire.Utils.Constants;
 
 import java.util.ArrayList;
@@ -62,16 +63,16 @@ public class DBDataHelper {
 		String question = null;
 		String query = "SELECT name FROM issue WHERE id_quest=" + idQuest;
 		Cursor cursor = database.rawQuery(query, null);
-		cursor.moveToPosition(row-1);
+		cursor.moveToPosition(row - 1);
 		question = cursor.getString(0);
 		cursor.close();
 		return question;
 	}
 
-	public void addQuests(String id, String nameQuest){
+	public void addQuests(Quest quest){
 		ContentValues values = new ContentValues();
-		values.put("id", id);
-		values.put("name", nameQuest);
+		values.put("id", quest.getId());
+		values.put("name", quest.getName());
 		database.insert(Constants.TABLE_NAME_QUESTS, null, values);
 	}
 

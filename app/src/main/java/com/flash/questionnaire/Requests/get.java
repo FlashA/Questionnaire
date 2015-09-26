@@ -35,9 +35,11 @@ public class get {
                     URL uri = new URL(url);
                     HttpURLConnection con = (HttpURLConnection) uri.openConnection();
                     readStream(con.getInputStream());
-                    if(parseJSON(getResult())){
-
+                    if(getStatus(getResult())){
+                        DBHelper.clearTableQuests();
+                        DBHelper.clearTableIssue();
                     }
+                    parseJSON(getResult());
                 } catch (Exception e){
                     e.printStackTrace();
                 }
@@ -45,16 +47,15 @@ public class get {
         }).start();
     }
 
-    public boolean parseJSON(String json){
+    public void parseJSON(String json){
         JSONObject object;
-        try{
+        try {
             object = new JSONObject(json);
             JSONArray response = object.getJSONArray("response");
 
-            for(int u=0; u<response.length(); u++){
+            for(int u=0; u < response.length(); u++) {
                 quest = new Quest();
                 JSONObject respons = response.getJSONObject(u);
-
                 JSONObject quests = respons.getJSONObject("quest");
 
                 quest.setId(quests.getString("id"));
@@ -67,10 +68,8 @@ public class get {
                 quest.setMail(quests.getString("mail"));
                 quest.setTel(quests.getString("tel"));
 
-                DBHelper.clearTableQuests();
-                DBHelper.clearTableIssue();
+                DBHelper.addQuests(quest);
 
-                DBHelper.addQuests(quest.getId(), quest.getName());
                 DBHelper.addIssue(quest.getId(), quest.getSex());
                 DBHelper.addIssue(quest.getId(), quest.getFio());
                 DBHelper.addIssue(quest.getId(), quest.getPrev_quest());
@@ -79,11 +78,22 @@ public class get {
                 DBHelper.addIssue(quest.getId(), quest.getMail());
                 DBHelper.addIssue(quest.getId(), quest.getTel());
             }
-            return true;
         } catch (JSONException e){
             e.printStackTrace();
-            return false;
         }
+    }
+
+    public boolean getStatus(String json){
+        JSONObject object = null;
+        boolean status = false;
+        try{
+            object = new JSONObject(json);
+            if(object.getString("status").equals("success")) status = true;
+        } catch (JSONException e){
+            status = false;
+            e.printStackTrace();
+        }
+        return status;
     }
 
     private void readStream(InputStream in) throws IOException{

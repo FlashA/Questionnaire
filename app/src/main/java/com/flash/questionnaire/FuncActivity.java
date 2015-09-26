@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.flash.questionnaire.SQLite.DBDataHelper;
@@ -30,7 +31,9 @@ public class FuncActivity extends AppCompatActivity {
 
     public void onClick(View v){
         //Toast.makeText(getApplicationContext(), DBHelper.getQuestions(4, 1), Toast.LENGTH_SHORT).show();
-        //Log.d("my_app", "Название квеста: " + DBHelper.getQuests().get(0));
+        String listQuest = "";
+        for(String s: DBHelper.getQuests()) listQuest += s + "\t";
+        Log.d("my_app", "Название квеста: " + listQuest);
     }
 
     public void checkData(){

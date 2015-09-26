@@ -2,7 +2,6 @@ package com.flash.questionnaire.Requests;
 
 import android.content.Context;
 
-import com.flash.questionnaire.Models.Status;
 import com.flash.questionnaire.SQLite.DBDataHelper;
 
 import org.json.JSONException;
@@ -30,9 +29,8 @@ public class post {
     private String tel;
 
     private String url;
-    private String mStatus;
 
-    private Status status;
+    private StringBuffer response;
 
     private DBDataHelper DBHelper;
 
@@ -53,7 +51,7 @@ public class post {
             @Override
             public void run() {
                 try {
-                    if(sendPost() && status.getStatus().equals("success")){
+                    if(sendPost() && getStatus(response.toString())){
                         DBHelper.clearRecordUser(mail);
                     }
                 } catch (Exception e) {
@@ -87,13 +85,12 @@ public class post {
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));
             String inputLine;
-            StringBuffer response = new StringBuffer();
+            response = new StringBuffer();
 
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
             }
             in.close();
-            parseJSON(response.toString());
             return true;
         } catch (IOException e){
             e.printStackTrace();
@@ -101,14 +98,16 @@ public class post {
         }
     }
 
-    public void parseJSON(String json){
+    public boolean getStatus(String json){
         JSONObject object = null;
+        boolean status = false;
         try{
             object = new JSONObject(json);
-            mStatus = object.getString("status");
-            status = new Status(mStatus);
+            if(object.getString("status").equals("success")) status = true;
         } catch (JSONException e){
+            status = false;
             e.printStackTrace();
         }
+        return status;
     }
 }
