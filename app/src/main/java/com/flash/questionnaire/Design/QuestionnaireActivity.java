@@ -23,16 +23,17 @@ public class QuestionnaireActivity extends QuestionnaireApplication {
 
     private FirstFragment fragmentLogin;
 
-    StatusBarManager statusBarManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire);
+
+
         container = (FrameLayout) findViewById(R.id.container);
 
-
+        container.setBackgroundResource(R.drawable.dyatlov2);
 
         fragmentManager = getFragmentManager();
 
@@ -76,23 +77,5 @@ public class QuestionnaireActivity extends QuestionnaireApplication {
         startActivity(new Intent(this, ThanksActivity.class));
         finish();
     }
-
-
-/*    protected void hideStatusBar(Context context) {
-        statusBarManager = new StatusBarManager(context);
-        statusBarManager.hide();
-    }
-
-    protected void showStatusBar() {
-        statusBarManager.show();
-    }
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        showStatusBar();
-    }
-*/
 
 }

@@ -38,22 +38,6 @@ public class ThanksActivity extends QuestionnaireApplication {
         dialog.show(getFragmentManager(), "quest");
 
     }
-/*    protected void hideStatusBar(Context context) {
-        statusBarManager = new StatusBarManager(context);
-        statusBarManager.hide();
-    }
-
-    protected void showStatusBar() {
-        statusBarManager.show();
-    }
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        showStatusBar();
-    }
-*/
 
     void showChooser() {
 

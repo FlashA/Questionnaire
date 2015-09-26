@@ -6,9 +6,6 @@ import android.os.CountDownTimer;
 
 import com.flash.questionnaire.R;
 
-/**
- * Created by Anton on 20.09.2015.
- */
 public class DesignActivity extends QuestionnaireApplication {
 
 
