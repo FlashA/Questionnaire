@@ -22,49 +22,55 @@
             android:layout_height="wrap_content"
             android:text="Играли ли вы раньше в наши квесты, если да, то отметьте в какие именно. (Ответ необязателен)"
             android:id="@+id/textView"
-            android:textSize="24sp"
+            android:textSize="36sp"
             android:textColor="@color/text_main" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Это мой первый  опыт"
+            android:textSize="24sp"
             android:id="@+id/checkBox"
             android:textColor="@color/text_main" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Искусственный Интеллект"
             android:id="@+id/checkBox2"
+            android:textSize="24sp"
             android:textColor="@color/text_main" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Тайна Перевала Дятлова"
             android:id="@+id/checkBox3"
+            android:textSize="24sp"
             android:textColor="@color/text_main" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Побег Из Супермакса"
             android:id="@+id/checkBox4"
+            android:textSize="24sp"
             android:textColor="@color/text_main" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Погребенные Заживо"
             android:id="@+id/checkBox5"
+            android:textSize="24sp"
             android:textColor="@color/text_main" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Гарри Поттер"
             android:id="@+id/checkBox6"
+            android:textSize="24sp"
             android:textColor="@color/text_main" />
 
 

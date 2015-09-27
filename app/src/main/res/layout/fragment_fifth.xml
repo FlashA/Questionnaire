@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="Помогите стать нам лучше. Мы ценим любые отзывы!  Напишите свои пожелания по улучшению игрового процесса на любом этапе. Напишите Ваши пожелания, чего вам не хватило, что вы бы хотели изменить! (Ответ необязателен)"
             android:id="@+id/textView"
-            android:textSize="24sp"
+            android:textSize="36sp"
             android:textColor="@color/text_main" />
 
         <EditText

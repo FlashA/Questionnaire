@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="Здравствуйте, как к Вам можно обращаться? ФИО.(Ответ обязателен)"
             android:id="@+id/textView"
-            android:textSize="24sp"
+            android:textSize="36sp"
             android:textColor="@color/text_main" />
         <LinearLayout
             android:layout_width="0dp"

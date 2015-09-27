@@ -21,49 +21,76 @@
             android:layout_height="wrap_content"
             android:text="Откуда вы узнали про квесты Взаперти? (Ответ обязателен, выбор нескольких вариантов)"
             android:id="@+id/textView"
+            android:textSize="36sp"
+            android:textColor="@color/text_main" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Рассказали друзья и знакомые"
+            android:id="@+id/checkBox"
             android:textSize="24sp"
             android:textColor="@color/text_main" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
-            android:id="@+id/checkBox"
-            android:textColor="@color/text_main" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Нашел случайно в поисковых системах интернета"
             android:id="@+id/checkBox2"
+            android:textSize="24sp"
             android:textColor="@color/text_main" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Пригласили поиграть друзья"
             android:id="@+id/checkBox3"
+            android:textSize="24sp"
             android:textColor="@color/text_main" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Увидел про квесты в соц сети вконтакте"
             android:id="@+id/checkBox4"
+            android:textSize="24sp"
             android:textColor="@color/text_main" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Это был сюрприз для меня"
             android:id="@+id/checkBox5"
+            android:textSize="24sp"
             android:textColor="@color/text_main" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New CheckBox"
+            android:text="Услышал на Радио"
             android:id="@+id/checkBox6"
+            android:textSize="24sp"
+            android:textColor="@color/text_main" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Увидел фото в Instagram"
+            android:id="@+id/checkBox7"
+            android:textSize="24sp"
+            android:textColor="@color/text_main" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Мне подарили сертификат"
+            android:id="@+id/checkBox8"
+            android:textSize="24sp"
+            android:textColor="@color/text_main" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Я выйграл сертификат"
+            android:id="@+id/checkBox9"
+            android:textSize="24sp"
             android:textColor="@color/text_main" />
 
         <EditText
