@@ -2,7 +2,7 @@
 <resources>
     <color name="button_green">#36ad22</color>
     <color name="background_main">#0a1423</color>
-    <color name="background_question">#1b75d0</color>
+    <color name="background_question">#801b75d0</color>
     <color name="text_main">#ffffff</color>
     <color name="red">#ff0009</color>
     <color name="blue">#0100ff</color>

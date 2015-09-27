@@ -90,6 +90,29 @@ public class DBDataHelper {
 		return question;
 	}
 
+	public ArrayList<String> getQuestions1() {
+		ArrayList<String> list = new ArrayList<String>();
+		String query = "SELECT name, id_quest FROM issue";
+		Cursor cursor = database.rawQuery(query, null);
+		if (cursor.moveToFirst()) {
+			do {
+				list.add(cursor.getString(1) + " " +cursor.getString(0));
+			} while (cursor.moveToNext());
+		}
+		cursor.close();
+		return list;
+	}
+
+	public int getQuestId(String questName) {
+		int questId = 0;
+		String query = "SELECT id FROM quests WHERE name='" + questName + "'";
+		Cursor cursor = database.rawQuery(query, null);
+		cursor.moveToFirst();
+		questId = cursor.getInt(0);
+		cursor.close();
+		return questId;
+	}
+
 	public void addQuests(Quest quest){
 		ContentValues values = new ContentValues();
 		values.put("id", quest.getId());

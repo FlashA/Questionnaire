@@ -60,12 +60,14 @@ public class ListAdapter extends BaseAdapter  {
 
     //    ((TextView) view.findViewById(R.id.textView)).setText("№ вопроса: " + list.get(position).getQuestion() + " Ответ: " + list.get(position).getAnswer());
 
-        Button button = (Button) view.findViewById(R.id.button);
+        final Button button = (Button) view.findViewById(R.id.button);
         button.setText(list.get(position));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, QuestionnaireActivity.class));
+                Intent intent = new Intent(context, QuestionnaireActivity.class);
+                intent.putExtra("QuestName", button.getText().toString());
+                context.startActivity(intent);
                 ((MenuActivity)context).finish();
             }
         });

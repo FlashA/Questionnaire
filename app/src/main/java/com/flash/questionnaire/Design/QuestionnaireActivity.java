@@ -11,6 +11,7 @@ import com.flash.questionnaire.Fragments.FirstFragment;
 import com.flash.questionnaire.Fragments.SecondFragment;
 import com.flash.questionnaire.Kiosk.StatusBarManager;
 import com.flash.questionnaire.R;
+import com.flash.questionnaire.SQLite.DBDataHelper;
 
 /**
  * Created by Anton on 20.09.2015.
@@ -23,6 +24,8 @@ public class QuestionnaireActivity extends QuestionnaireApplication {
 
     private FirstFragment fragmentLogin;
 
+    private DBDataHelper database;
+
 
 
     @Override
@@ -30,7 +33,7 @@ public class QuestionnaireActivity extends QuestionnaireApplication {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire);
 
-
+        database = new DBDataHelper(this);
         container = (FrameLayout) findViewById(R.id.container);
 
         container.setBackgroundResource(R.drawable.dyatlov2);
@@ -47,6 +50,12 @@ public class QuestionnaireActivity extends QuestionnaireApplication {
 
             FragmentTransaction fragmentTransaction = fragmentManager
                     .beginTransaction();
+            Bundle bundle = new Bundle();
+            bundle.putInt("Quest", database.getQuestId(getIntent().getExtras().getString("QuestName")));
+            // set Fragmentclass Arguments
+            fragmentLogin.setArguments(bundle);
+
+           // getIntent().getExtras().getString("QuestName");
             fragmentTransaction.replace(R.id.container, fragmentLogin);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();

@@ -72,7 +72,6 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 		}
 		localDbStream.close();
 		externalDbStream.close();
-
 	}
 
 	public SQLiteDatabase openDataBase() throws SQLException {

@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Спасибо за то, что Вы выбрали квесты Взаперти! Мы бы хотели сообщать вам об открытии новых квестов, для этого укажите свой номер телефона."
-            android:id="@+id/textView2"
+            android:id="@+id/textView"
             android:textSize="24sp"
             android:textColor="@color/text_main" />
 

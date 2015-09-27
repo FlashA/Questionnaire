@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Во время игры наши Администраторы внимательно следили за вами и сделали несколько увлекательных фотографий, все они будут размещены в закрытой группе вконтакте, для получения приглашения в эту группу оставьте свой Email адрес. (Ответ необязателен)"
-            android:id="@+id/textView2"
+            android:id="@+id/textView"
             android:textSize="24sp"
             android:textColor="@color/text_main" />
 
