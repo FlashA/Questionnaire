@@ -36,7 +36,29 @@ public class QuestionnaireActivity extends QuestionnaireApplication {
         database = new DBDataHelper(this);
         container = (FrameLayout) findViewById(R.id.container);
 
-        container.setBackgroundResource(R.drawable.dyatlov2);
+        try {
+            switch (getIntent().getExtras().getString("QuestName")) {
+            case "Искусственный Интеллект":
+                container.setBackgroundResource(R.drawable.iskusstvenny_intellekt2);
+                break;
+            case "Тайна Перевала Дятлова":
+                container.setBackgroundResource(R.drawable.dyatlov2);
+                break;
+            case "Побег Из Супермакса":
+                container.setBackgroundResource(R.drawable.supermax2);
+                break;
+            case "Погребенные Заживо":
+                container.setBackgroundResource(R.drawable.pogrebennye_zazhivo2);
+                break;
+            case "Гарри Поттер":
+                container.setBackgroundResource(R.drawable.garri_potter2);
+                break;
+
+            }
+        } catch (Exception ex ) {
+
+        }
+     //   container.setBackgroundResource(R.drawable.dyatlov2);
 
         fragmentManager = getFragmentManager();
 
