@@ -45,14 +45,6 @@ public class FirstFragment extends Fragment {
     }
 
     private void initButton(View view) {
-        button_next = (Button) view.findViewById(R.id.button_next);
-        button_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goFragment();
-            }
-        });
-
         button_f = (Button) view.findViewById(R.id.button_f);
         button_f.setOnClickListener(new View.OnClickListener() {
             @Override

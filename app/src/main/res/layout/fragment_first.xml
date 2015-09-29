@@ -9,12 +9,11 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:padding="20dp"
         android:background="@color/background_question"
-        android:id="@+id/linearLayout">
+        android:id="@+id/linearLayout"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,17 +59,5 @@
 
     </LinearLayout>
 
-
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Продолжить"
-        android:id="@+id/button_next"
-        android:onClick="next"
-        android:background="@color/button_green"
-        android:textColor="@color/text_main"
-        android:layout_margin="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
