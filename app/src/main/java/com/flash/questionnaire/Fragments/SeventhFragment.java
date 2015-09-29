@@ -54,13 +54,9 @@ public class SeventhFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 setText();
-
-
                 Intent intent = new Intent(getActivity(), ThanksActivity.class);
                 intent.putExtra("answer", answers);
                 startActivity(intent);
-
-                //startActivity(new Intent(getActivity(), ThanksActivity.class));
                 getActivity().finish();
             }
         });

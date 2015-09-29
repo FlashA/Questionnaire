@@ -16,7 +16,7 @@ import com.flash.questionnaire.SQLite.DBDataHelper;
 public class ThanksActivity extends QuestionnaireApplication {
 
     private Answers answers;
-    
+
     private DBDataHelper DBHelper;
 
     @Override

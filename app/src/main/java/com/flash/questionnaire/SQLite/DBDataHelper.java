@@ -90,19 +90,6 @@ public class DBDataHelper {
 		return question;
 	}
 
-	public ArrayList<String> getQuestions1() {
-		ArrayList<String> list = new ArrayList<String>();
-		String query = "SELECT name, id_quest FROM issue";
-		Cursor cursor = database.rawQuery(query, null);
-		if (cursor.moveToFirst()) {
-			do {
-				list.add(cursor.getString(1) + " " +cursor.getString(0));
-			} while (cursor.moveToNext());
-		}
-		cursor.close();
-		return list;
-	}
-
 	public int getQuestId(String questName) {
 		int questId = 0;
 		String query = "SELECT id FROM quests WHERE name='" + questName + "'";
@@ -145,8 +132,8 @@ public class DBDataHelper {
 		database.execSQL("DELETE FROM " + Constants.TABLE_NAME_ISSUE);
 	}
 
-	public void clearRecordUser(String mail){
-		database.delete("users", "mail = " + mail, null);
+	public void clearRecordUser(String tel){
+		database.delete("users", "tel = " + tel, null);
 	}
 
 	public void clearTableQuests(){

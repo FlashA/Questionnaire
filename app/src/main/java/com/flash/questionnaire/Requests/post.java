@@ -1,6 +1,7 @@
 package com.flash.questionnaire.Requests;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.flash.questionnaire.SQLite.DBDataHelper;
 
@@ -52,7 +53,8 @@ public class post {
             public void run() {
                 try {
                     if(sendPost()){
-                        DBHelper.clearRecordUser(mail);
+                        Log.d("my_app", "Чистим пользователя");
+                        DBHelper.clearRecordUser(tel);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -91,8 +93,7 @@ public class post {
                 response.append(inputLine);
             }
             in.close();
-            if(getStatus(response.toString())) return true;
-            else return false;
+            return true;
         } catch (IOException e){
             e.printStackTrace();
             return false;

@@ -49,15 +49,7 @@ public class FirstFragment extends Fragment {
         button_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                Bundle bundle = new Bundle();
-                bundle.putInt("Quest", id);
-                bundle.putParcelable("answers", answers);
-                SecondFragment fragment = new SecondFragment();
-                fragment.setArguments(bundle);
-                ft.replace(R.id.container, fragment);
-                ft.addToBackStack(null);
-                ft.commit();
+                goFragment();
             }
         });
 
@@ -66,6 +58,7 @@ public class FirstFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 answers.setSex("Ж");
+                goFragment();
             }
         });
 
@@ -74,8 +67,21 @@ public class FirstFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 answers.setSex("М");
+                goFragment();
             }
         });
+    }
+
+    public void goFragment(){
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putInt("Quest", id);
+        bundle.putParcelable("answers", answers);
+        SecondFragment fragment = new SecondFragment();
+        fragment.setArguments(bundle);
+        ft.replace(R.id.container, fragment);
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
     private void setQuestion(View view) {
