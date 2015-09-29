@@ -1,15 +1,11 @@
 package com.flash.questionnaire.Design;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.flash.questionnaire.Design.List.ListAdapter;
-import com.flash.questionnaire.Kiosk.StatusBarManager;
 import com.flash.questionnaire.R;
 import com.flash.questionnaire.SQLite.DBDataHelper;
 
@@ -28,17 +24,12 @@ public class MenuActivity extends QuestionnaireApplication {
         setContentView(R.layout.activity_menu);
         database = new DBDataHelper(this);
         initQuestsList();
-
-
-
     }
 
     private void initQuestsList() {
         listView = (ListView) findViewById(R.id.listView);
         listView.setDividerHeight(0);
         adapter = new ListAdapter(this, database.getQuests());
-
-  //      Log.d("my_app", database.getQuests().get(0));
         listView.setAdapter(adapter);
     }
 

@@ -23,14 +23,6 @@ import java.util.ArrayList;
  */
 public class UpdateInfo extends Service {
 
-    private String sex;
-    private String fio;
-    private String prev_quest;
-    private String ref;
-    private String rev;
-    private String mail;
-    private String tel;
-
     private get getQuests;
     private post mPost;
 
@@ -62,14 +54,14 @@ public class UpdateInfo extends Service {
     public void addUsers(){
         ArrayList<UsersData> users = DBHelper.getUsers();
         for (int i = 0; i < users.size(); i++) {
-            sex = users.get(i).getSex();
-            fio = users.get(i).getFio();
-            prev_quest = users.get(i).getPrev_quest();
-            ref = users.get(i).getRef();
-            rev = users.get(i).getRev();
-            mail = users.get(i).getMail();
-            tel = users.get(i).getTel();
-            mPost = new post(Constants.API_URL_POST, sex, fio, prev_quest, ref, rev, mail, tel,
+            mPost = new post(Constants.API_URL_POST,
+                    users.get(i).getSex(),
+                    users.get(i).getFio(),
+                    users.get(i).getPrev_quest(),
+                    users.get(i).getRef(),
+                    users.get(i).getRev(),
+                    users.get(i).getMail(),
+                    users.get(i).getTel(),
                     getApplicationContext());
         }
     }
