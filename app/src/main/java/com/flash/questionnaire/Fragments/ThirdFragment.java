@@ -7,8 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.flash.questionnaire.Models.Answers;
 import com.flash.questionnaire.R;
 import com.flash.questionnaire.SQLite.DBDataHelper;
 
@@ -24,15 +27,28 @@ public class ThirdFragment extends Fragment {
     private DBDataHelper database;
 
     private int id;
+
+    private Answers answers;
+
+    private CheckBox checkBox_1;
+    private CheckBox checkBox_2;
+    private CheckBox checkBox_3;
+    private CheckBox checkBox_4;
+    private CheckBox checkBox_5;
+    private CheckBox checkBox_6;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_third, container, false);
         database = new DBDataHelper(getActivity());
         initButton(view);
+        initCheckBox(view);
 
 
         id = getArguments().getInt("Quest");
+        answers = getArguments().getParcelable("answers");
+
         setQuestion(view);
         return view;
     }
@@ -42,25 +58,59 @@ public class ThirdFragment extends Fragment {
         button_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                Bundle bundle = new Bundle();
-                bundle.putInt("Quest", id);
-                FourthFragment fragment = new FourthFragment();
-                fragment.setArguments(bundle);
-                ft.replace(R.id.container, fragment);
-                ft.addToBackStack(null);
-                ft.commit();
+                if(checkChoosing()){
+                    setData();
+                    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("Quest", id);
+                    bundle.putParcelable("answers", answers);
+                    FourthFragment fragment = new FourthFragment();
+                    fragment.setArguments(bundle);
+                    ft.replace(R.id.container, fragment);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                } else{
+                    Toast.makeText(getView().getContext(), "Сделайте выбор", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
+
+    private void setData(){
+        if(checkBox_1.isChecked()) mergeText(checkBox_1);
+        if(checkBox_2.isChecked()) mergeText(checkBox_2);
+        if(checkBox_3.isChecked()) mergeText(checkBox_3);
+        if(checkBox_4.isChecked()) mergeText(checkBox_4);
+        if(checkBox_5.isChecked()) mergeText(checkBox_5);
+        if(checkBox_6.isChecked()) mergeText(checkBox_6);
+    }
+
+    private boolean checkChoosing(){
+        if(checkBox_1.isChecked() ||
+                checkBox_2.isChecked() ||
+                checkBox_3.isChecked() ||
+                checkBox_4.isChecked() ||
+                checkBox_5.isChecked() ||
+                checkBox_6.isChecked()) return true;
+        else return false;
+    }
+
+    private void mergeText(CheckBox checkBox){
+        if(answers.getPrev_quest() == null) answers.setPrev_quest(checkBox.getText().toString());
+        else answers.setPrev_quest(answers.getPrev_quest() + ", " + checkBox.getText().toString());
+    }
+
+    private void initCheckBox(View view){
+        checkBox_1 = (CheckBox) view.findViewById(R.id.checkBox);
+        checkBox_2 = (CheckBox) view.findViewById(R.id.checkBox2);
+        checkBox_3 = (CheckBox) view.findViewById(R.id.checkBox3);
+        checkBox_4 = (CheckBox) view.findViewById(R.id.checkBox4);
+        checkBox_5 = (CheckBox) view.findViewById(R.id.checkBox5);
+        checkBox_6 = (CheckBox) view.findViewById(R.id.checkBox6);
     }
 
     private void setQuestion(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
         textView.setText(database.getQuestions(id, 3));
-        //   ArrayList<String> list = new ArrayList<>(database.getQuestions1());
-
-        //   for(int position = 0; position<list.size(); position++) {
-        //       Log.d("my_app", list.get(position));
-        //   }
     }
 }

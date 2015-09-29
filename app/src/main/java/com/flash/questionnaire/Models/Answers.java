@@ -1,9 +1,12 @@
 package com.flash.questionnaire.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by fdh on 28.09.15.
  */
-public class Answers {
+public class Answers implements Parcelable {
 
     private String sex;
     private String fio;
@@ -12,6 +15,30 @@ public class Answers {
     private String rev;
     private String mail;
     private String tel;
+
+    public Answers(){}
+
+    protected Answers(Parcel in) {
+        sex = in.readString();
+        fio = in.readString();
+        prev_quest = in.readString();
+        ref = in.readString();
+        rev = in.readString();
+        mail = in.readString();
+        tel = in.readString();
+    }
+
+    public static final Creator<Answers> CREATOR = new Creator<Answers>() {
+        @Override
+        public Answers createFromParcel(Parcel in) {
+            return new Answers(in);
+        }
+
+        @Override
+        public Answers[] newArray(int size) {
+            return new Answers[size];
+        }
+    };
 
     public String getSex() {
         return sex;
@@ -67,5 +94,21 @@ public class Answers {
 
     public void setTel(String tel) {
         this.tel = tel;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(sex);
+        dest.writeString(fio);
+        dest.writeString(prev_quest);
+        dest.writeString(ref);
+        dest.writeString(rev);
+        dest.writeString(mail);
+        dest.writeString(tel);
     }
 }

@@ -9,7 +9,7 @@ import android.widget.FrameLayout;
 
 import com.flash.questionnaire.Fragments.FirstFragment;
 import com.flash.questionnaire.Fragments.SecondFragment;
-import com.flash.questionnaire.Kiosk.StatusBarManager;
+import com.flash.questionnaire.Models.Answers;
 import com.flash.questionnaire.R;
 import com.flash.questionnaire.SQLite.DBDataHelper;
 
@@ -26,12 +26,16 @@ public class QuestionnaireActivity extends QuestionnaireApplication {
 
     private DBDataHelper database;
 
+    private Answers answers;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire);
+
+        answers = new Answers();
 
         database = new DBDataHelper(this);
         container = (FrameLayout) findViewById(R.id.container);
@@ -74,6 +78,7 @@ public class QuestionnaireActivity extends QuestionnaireApplication {
                     .beginTransaction();
             Bundle bundle = new Bundle();
             bundle.putInt("Quest", database.getQuestId(getIntent().getExtras().getString("QuestName")));
+            bundle.putParcelable("answers", answers);
             // set Fragmentclass Arguments
             fragmentLogin.setArguments(bundle);
 
