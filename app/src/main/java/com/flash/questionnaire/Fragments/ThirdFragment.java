@@ -49,13 +49,13 @@ public class ThirdFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_third, container, false);
         database = new DBDataHelper(getActivity());
-        initButton(view);
-        initCheckBox(view);
+
 
 
 
         id = getArguments().getInt("Quest");
         answers = getArguments().getParcelable("answers");
+        initButton(view);
         initQuestsList(view);
         setQuestion(view);
         return view;
@@ -66,8 +66,8 @@ public class ThirdFragment extends Fragment {
         button_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (checkChoosing()) {
-                    setData();
+                if (adapter.isChecked()) {
+                    // setData();
                     final FragmentTransaction ft = getFragmentManager().beginTransaction();
                     Bundle bundle = new Bundle();
                     bundle.putInt("Quest", id);
@@ -92,6 +92,16 @@ public class ThirdFragment extends Fragment {
         if(checkBox_5.isChecked()) mergeText(checkBox_5);
         if(checkBox_6.isChecked()) mergeText(checkBox_6);
     }
+
+  /*  private boolean checkChoosing(){
+        if(checkBox_1.isChecked() ||
+                checkBox_2.isChecked() ||
+                checkBox_3.isChecked() ||
+                checkBox_4.isChecked() ||
+                checkBox_5.isChecked() ||
+                checkBox_6.isChecked()) return true;
+        else return false;
+    }*/
 
     private boolean checkChoosing(){
         if(checkBox_1.isChecked() ||

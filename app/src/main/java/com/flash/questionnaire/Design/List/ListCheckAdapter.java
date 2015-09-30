@@ -28,6 +28,8 @@ public class ListCheckAdapter extends BaseAdapter  {
     private LayoutInflater lInflater;
     private Context context;
     private Answers answers;
+    private int checkedNumber = 0;
+    private boolean checked;
 
 
     public ListCheckAdapter(Context context, ArrayList<String> list, Answers answers, String currentQuest) {
@@ -77,9 +79,11 @@ public class ListCheckAdapter extends BaseAdapter  {
                  //   Toast.makeText(finalView.getContext(), answers.getPrev_quest(), Toast.LENGTH_SHORT).show();
                     mergeText(checkBox);
                     Log.d("my_app", answers.getPrev_quest());
+                    checkedNumber++;
                    // Toast.makeText(finalView.getContext(), answers.getPrev_quest(), Toast.LENGTH_SHORT).show();
                 } else {
                     removeText(checkBox);
+                    checkedNumber--;
                     Log.d("my_app", answers.getPrev_quest());
                 }
             }
@@ -102,6 +106,11 @@ public class ListCheckAdapter extends BaseAdapter  {
 
     public Answers getAnswers() {
         return answers;
+    }
+
+    public boolean isChecked() {
+        checked = checkedNumber > 0;
+        return checked;
     }
 
 
