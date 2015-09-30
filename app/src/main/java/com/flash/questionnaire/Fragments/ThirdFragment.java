@@ -8,12 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.flash.questionnaire.Design.List.ListAdapter;
+import com.flash.questionnaire.Design.List.ListCheckAdapter;
 import com.flash.questionnaire.Models.Answers;
 import com.flash.questionnaire.R;
 import com.flash.questionnaire.SQLite.DBDataHelper;
+
+import java.util.ArrayList;
 
 /**
  * Created by Anton on 22.09.2015.
@@ -29,6 +34,8 @@ public class ThirdFragment extends Fragment {
     private int id;
 
     private Answers answers;
+
+    private ListCheckAdapter adapter;
 
     private CheckBox checkBox_1;
     private CheckBox checkBox_2;
@@ -46,9 +53,10 @@ public class ThirdFragment extends Fragment {
         initCheckBox(view);
 
 
+
         id = getArguments().getInt("Quest");
         answers = getArguments().getParcelable("answers");
-
+        initQuestsList(view);
         setQuestion(view);
         return view;
     }
@@ -58,18 +66,18 @@ public class ThirdFragment extends Fragment {
         button_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkChoosing()){
+                if (checkChoosing()) {
                     setData();
                     final FragmentTransaction ft = getFragmentManager().beginTransaction();
                     Bundle bundle = new Bundle();
                     bundle.putInt("Quest", id);
-                    bundle.putParcelable("answers", answers);
+                    bundle.putParcelable("answers", adapter.getAnswers());
                     FourthFragment fragment = new FourthFragment();
                     fragment.setArguments(bundle);
                     ft.replace(R.id.container, fragment);
                     ft.addToBackStack(null);
                     ft.commit();
-                } else{
+                } else {
                     Toast.makeText(getView().getContext(), "Сделайте выбор", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -107,10 +115,44 @@ public class ThirdFragment extends Fragment {
         checkBox_4 = (CheckBox) view.findViewById(R.id.checkBox4);
         checkBox_5 = (CheckBox) view.findViewById(R.id.checkBox5);
         checkBox_6 = (CheckBox) view.findViewById(R.id.checkBox6);
+        switch (getArguments().getString("QuestName")) {
+            case "Искусственный Интеллект":
+                checkBox_2.setChecked(true);
+                checkBox_2.setVisibility(View.GONE);
+                break;
+            case "Тайна Перевала Дятлова":
+                checkBox_3.setChecked(true);
+                checkBox_3.setVisibility(View.GONE);
+                break;
+            case "Побег Из Супермакса":
+                checkBox_4.setChecked(true);
+                checkBox_4.setVisibility(View.GONE);
+                break;
+            case "Погребенные Заживо":
+                checkBox_5.setChecked(true);
+                checkBox_5.setVisibility(View.GONE);
+                break;
+            case "Гарри Поттер":
+                checkBox_6.setChecked(true);
+                checkBox_6.setVisibility(View.GONE);
+                break;
+
+        }
     }
 
     private void setQuestion(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
         textView.setText(database.getQuestions(id, 3));
+    }
+
+    private void initQuestsList(View view) {
+        ListView listView = (ListView) view.findViewById(R.id.listView);
+        listView.setDividerHeight(0);
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Это мой первый опыт");
+        list.addAll(database.getQuests());
+   //     if (list.contains(getArguments().getString("QuestName"))) list.remove(getArguments().getString("QuestName"));
+        adapter = new ListCheckAdapter(getActivity(), list, answers, getArguments().getString("QuestName"));
+        listView.setAdapter(adapter);
     }
 }

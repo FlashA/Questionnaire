@@ -14,8 +14,6 @@ import com.flash.questionnaire.SQLite.DBDataHelper;
  */
 public class MenuActivity extends QuestionnaireApplication {
 
-    private ListView listView;
-    private ListAdapter adapter;
     private DBDataHelper database;
 
     @Override
@@ -27,9 +25,9 @@ public class MenuActivity extends QuestionnaireApplication {
     }
 
     private void initQuestsList() {
-        listView = (ListView) findViewById(R.id.listView);
+        ListView listView = (ListView) findViewById(R.id.listView);
         listView.setDividerHeight(0);
-        adapter = new ListAdapter(this, database.getQuests());
+        ListAdapter adapter = new ListAdapter(this, database.getQuests());
         listView.setAdapter(adapter);
     }
 

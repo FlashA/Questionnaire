@@ -78,6 +78,7 @@ public class QuestionnaireActivity extends QuestionnaireApplication {
                     .beginTransaction();
             Bundle bundle = new Bundle();
             bundle.putInt("Quest", database.getQuestId(getIntent().getExtras().getString("QuestName")));
+            bundle.putString("QuestName", getIntent().getExtras().getString("QuestName"));
             bundle.putParcelable("answers", answers);
             // set Fragmentclass Arguments
             fragmentLogin.setArguments(bundle);

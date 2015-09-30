@@ -16,12 +16,18 @@
         android:launchMode="singleTask"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Design.FakeActivity"
-            android:enabled="false">
+        android:name=".Design.DesignActivity"
+        android:screenOrientation="portrait">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.HOME" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity
-            android:name=".Design.DesignActivity"
-            android:screenOrientation="portrait">
+            android:name=".Design.FakeActivity"
+            android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -29,6 +35,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".Design.MenuActivity"
             android:screenOrientation="portrait" >

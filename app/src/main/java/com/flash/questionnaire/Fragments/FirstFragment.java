@@ -69,6 +69,7 @@ public class FirstFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putInt("Quest", id);
         bundle.putParcelable("answers", answers);
+        bundle.putString("QuestName", getArguments().getString("QuestName"));
         SecondFragment fragment = new SecondFragment();
         fragment.setArguments(bundle);
         ft.replace(R.id.container, fragment);
