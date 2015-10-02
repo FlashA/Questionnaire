@@ -117,12 +117,12 @@ public class FourthFragment extends Fragment {
 
     private void mergeText(CheckBox checkBox){
         if(answers.getRef() == null) answers.setRef(checkBox.getText().toString());
-        else answers.setRef(answers.getRef() + ", " + checkBox.getText().toString());
+        else answers.setRef(answers.getRef() + ";" + checkBox.getText().toString());
     }
 
     private void mergeTextEditText(EditText editText){
         if(answers.getRef() == null) answers.setRef(editText.getText().toString());
-        else answers.setRef(answers.getRef() + ", " + editText.getText().toString());
+        else answers.setRef(answers.getRef() + ";" + editText.getText().toString());
     }
 
     private void initEditText(View view){

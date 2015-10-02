@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.flash.questionnaire.Design.List.ListAdapter;
 import com.flash.questionnaire.Design.List.ListCheckAdapter;
 import com.flash.questionnaire.Models.Answers;
 import com.flash.questionnaire.R;
@@ -93,7 +92,7 @@ public class ThirdFragment extends Fragment {
         if(checkBox_6.isChecked()) mergeText(checkBox_6);
     }
 
-  /*  private boolean checkChoosing(){
+    /*private boolean checkChoosing(){
         if(checkBox_1.isChecked() ||
                 checkBox_2.isChecked() ||
                 checkBox_3.isChecked() ||
