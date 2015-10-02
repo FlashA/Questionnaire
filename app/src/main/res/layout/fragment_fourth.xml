@@ -99,6 +99,7 @@
             android:id="@+id/editText_another"
             android:backgroundTint="@color/text_main"
             android:hint="Другое"
+            android:inputType="textCapSentences"
             android:textColor="@color/text_main"
             android:textCursorDrawable="@null"
             android:textColorHint="@color/text_main" />

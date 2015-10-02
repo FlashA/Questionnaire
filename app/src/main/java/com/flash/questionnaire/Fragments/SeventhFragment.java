@@ -1,11 +1,13 @@
 package com.flash.questionnaire.Fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,6 +43,7 @@ public class SeventhFragment extends Fragment {
         initEditText(view);
 
 
+
         id = getArguments().getInt("Quest");
         answers = getArguments().getParcelable("answers");
 
@@ -56,6 +59,7 @@ public class SeventhFragment extends Fragment {
                 setText();
                 Intent intent = new Intent(getActivity(), ThanksActivity.class);
                 intent.putExtra("answer", answers);
+                hideKeyboard();
                 startActivity(intent);
                 getActivity().finish();
             }
@@ -78,5 +82,11 @@ public class SeventhFragment extends Fragment {
         textView = (TextView) view.findViewById(R.id.textView);
         textView.setText(database.getQuestions(id, 7));
     }
-
+    private void hideKeyboard() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 }

@@ -38,6 +38,7 @@
             android:backgroundTint="@color/text_main"
             android:hint="Фамилия"
             android:textColor="@color/text_main"
+            android:inputType="textCapWords"
             android:textCursorDrawable="@null"
             android:textColorHint="@color/text_main" />
         <EditText
@@ -46,6 +47,7 @@
             android:id="@+id/editText_io"
             android:backgroundTint="@color/text_main"
             android:hint="Имя Отчество"
+            android:inputType="textCapWords"
             android:textColor="@color/text_main"
             android:textCursorDrawable="@null"
             android:textColorHint="@color/text_main" />
@@ -60,7 +62,7 @@
         android:onClick="next"
         android:background="@color/button_green"
         android:textColor="@color/text_main"
-        android:layout_margin="50dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

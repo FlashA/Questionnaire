@@ -2,10 +2,12 @@ package com.flash.questionnaire.Fragments;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -61,6 +63,7 @@ public class SecondFragment extends Fragment {
                     bundle.putString("QuestName", getArguments().getString("QuestName"));
                     ThirdFragment fragment = new ThirdFragment();
                     fragment.setArguments(bundle);
+                    hideKeyboard();
                     ft.replace(R.id.container, fragment);
                     ft.addToBackStack(null);
                     ft.commit();
@@ -92,5 +95,13 @@ public class SecondFragment extends Fragment {
     private void setQuestion(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
         textView.setText(database.getQuestions(id, 2));
+    }
+
+    private void hideKeyboard() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

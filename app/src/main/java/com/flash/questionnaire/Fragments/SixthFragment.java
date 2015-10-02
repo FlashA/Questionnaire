@@ -2,10 +2,14 @@ package com.flash.questionnaire.Fragments;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,6 +17,8 @@ import android.widget.TextView;
 import com.flash.questionnaire.Models.Answers;
 import com.flash.questionnaire.R;
 import com.flash.questionnaire.SQLite.DBDataHelper;
+
+import java.util.Locale;
 
 /**
  * Created by Anton on 22.09.2015.
@@ -34,16 +40,18 @@ public class SixthFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        changeLanguage();
         View view = inflater.inflate(R.layout.fragment_sixth, container, false);
         database = new DBDataHelper(getActivity());
         initButton(view);
-        initEditText(view);
 
+        initEditText(view);
 
         id = getArguments().getInt("Quest");
         answers = getArguments().getParcelable("answers");
 
         setQuestion(view);
+
         return view;
     }
 
@@ -59,6 +67,7 @@ public class SixthFragment extends Fragment {
                 bundle.putParcelable("answers", answers);
                 SeventhFragment fragment = new SeventhFragment();
                 fragment.setArguments(bundle);
+                hideKeyboard();
                 ft.replace(R.id.container, fragment);
                 ft.addToBackStack(null);
                 ft.commit();
@@ -82,6 +91,30 @@ public class SixthFragment extends Fragment {
     private void setQuestion(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
         textView.setText(database.getQuestions(id, 6));
+    }
+
+    private void changeLanguage() {
+      /*  Resources res = getActivity().getResources();
+
+        Locale locale = new Locale("en"); //<--- use your locale code here
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.locale = locale;
+
+        res.updateConfiguration(config, res.getDisplayMetrics());
+    */
+        Configuration config = new Configuration(getResources().getConfiguration());
+        config.locale = Locale.GERMAN ;
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+    }
+    private void hideKeyboard() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
 }
