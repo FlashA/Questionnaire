@@ -75,7 +75,7 @@ public class ThirdFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putInt("Quest", id);
                     bundle.putParcelable("answers", answers);
-                    Fourth1Fragment fragment = new Fourth1Fragment();
+                    FourthFragment fragment = new FourthFragment();
                     fragment.setArguments(bundle);
                     hideKeyboard();
                     ft.replace(R.id.container, fragment);

@@ -19,7 +19,7 @@ import com.flash.questionnaire.SQLite.DBDataHelper;
 /**
  * Created by Anton on 22.09.2015.
  */
-public class Fourth1Fragment extends Fragment {
+public class FourthFragment extends Fragment {
 
     private Button button_next;
 
@@ -36,7 +36,7 @@ public class Fourth1Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fourth1, container, false);
+        View view = inflater.inflate(R.layout.fragment_fourth, container, false);
         database = new DBDataHelper(getActivity());
         initButton(view);
         initEditText(view);
@@ -67,7 +67,7 @@ public class Fourth1Fragment extends Fragment {
                     bundle.putInt("Quest", id);
                     bundle.putParcelable("answers", answers);
                     bundle.putString("QuestName", getArguments().getString("QuestName"));
-                    Fifth5Fragment fragment = new Fifth5Fragment();
+                    FifthFragment fragment = new FifthFragment();
                     fragment.setArguments(bundle);
                     hideKeyboard();
                     ft.replace(R.id.container, fragment);
