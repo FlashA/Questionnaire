@@ -8,8 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 import com.flash.questionnaire.Models.Quest;
 import com.flash.questionnaire.Models.UsersData;
 import com.flash.questionnaire.Utils.Constants;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DBDataHelper {
 	
@@ -43,6 +46,29 @@ public class DBDataHelper {
 			} while(cursor.moveToNext());
 		}
 		return users;
+	}
+
+	public String composeJSONfromSQLite(){
+		ArrayList<HashMap<String, String>> wordList;
+		wordList = new ArrayList<HashMap<String, String>>();
+		String query = "SELECT * FROM " + Constants.TABLE_NAME_USERS;
+		Cursor cursor = database.rawQuery(query, null);
+		if (cursor.moveToFirst()) {
+			do {
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put("userId", cursor.getString(0));
+				map.put("userName", cursor.getString(1));
+				map.put("userName", cursor.getString(1));
+				map.put("userName", cursor.getString(1));
+				map.put("userName", cursor.getString(1));
+				map.put("userName", cursor.getString(1));
+				wordList.add(map);
+			} while (cursor.moveToNext());
+		}
+		database.close();
+		Gson gson = new GsonBuilder().create();
+		//Use GSON to serialize Array List to JSON
+		return gson.toJson(wordList);
 	}
 
 	public boolean getSizes() {
