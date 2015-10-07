@@ -26,7 +26,6 @@ public class SecondFragment extends Fragment {
 
     private TextView textView;
 
-    private EditText editText_f;
     private EditText editText_io;
 
     private DBDataHelper database;
@@ -76,14 +75,13 @@ public class SecondFragment extends Fragment {
     }
 
     private void initEditText(View view){
-        editText_f = (EditText) view.findViewById(R.id.editText_f);
         editText_io = (EditText) view.findViewById(R.id.editText_io);
     }
 
     private boolean checkNullText(){
-        if(getText(editText_f) || getText(editText_io)) return false;
+        if(getText(editText_io)) return false;
         else {
-            answers.setFio(editText_f.getText().toString() + " " + editText_io.getText().toString());
+            answers.setFio(editText_io.getText().toString());
             return true;
         }
     }
