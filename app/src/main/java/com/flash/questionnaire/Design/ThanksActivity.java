@@ -31,7 +31,6 @@ public class ThanksActivity extends QuestionnaireApplication {
 
         DBHelper.addUserAnswers(answers.getSex(),
                 answers.getFio(),
-                answers.getPrev_quest(),
                 answers.getRef(),
                 answers.getRev(),
                 answers.getMail(),
@@ -51,7 +50,7 @@ public class ThanksActivity extends QuestionnaireApplication {
 
     public void exit(View v) {
         ExitDialog dialog = new ExitDialog();
-        dialog.setContext(this);
+        dialog.setContext(this, 2);
         dialog.show(getFragmentManager(), "quest");
     }
 

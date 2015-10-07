@@ -30,6 +30,17 @@
             android:id="@+id/listView"
             android:layout_gravity="center_horizontal"
             android:layout_margin="30dp"/>
-    </LinearLayout>
 
+
+    </LinearLayout>
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:text="Выход"
+        android:id="@+id/button"
+        android:onClick="exit"
+        android:layout_margin="25dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/button_green"
+        android:textColor="@color/text_main"/>
 </LinearLayout>
