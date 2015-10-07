@@ -13,8 +13,6 @@ import java.util.ArrayList;
 
 public class DBDataHelper {
 	
-	private static final String DB_NAME = "quest.sqlite";
-	
 	private SQLiteDatabase database;
 	private Context context;
 
@@ -24,7 +22,7 @@ public class DBDataHelper {
 	}
 	
 	public void openDB() {
-	 	DBOpenHelper dbOpenHelper = new DBOpenHelper(context, DB_NAME);
+	 	DBOpenHelper dbOpenHelper = new DBOpenHelper(context, Constants.DATABASE_NAME);
 	 	database = dbOpenHelper.openDataBase();
 	}
 

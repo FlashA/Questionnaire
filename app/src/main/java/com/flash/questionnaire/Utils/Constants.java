@@ -4,6 +4,8 @@ package com.flash.questionnaire.Utils;
  * Created by fdh on 20.09.15.
  */
 public class Constants {
+    public static final String DATABASE_NAME = "60minute.sqlite";
+
     public static final String API_URL_GET = "http://quest.dev.sete.pw/api/quest.getList";
     public static final String API_URL_POST = "http://quest.dev.sete.pw/api/user.add";
 
@@ -13,5 +15,4 @@ public class Constants {
 
     public static final int FLAG_SHOW_STATUS_BAR = 1;
     public static final int FLAG_HIDE_STATUS_BAR = 2;
-
 }
