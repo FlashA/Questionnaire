@@ -48,8 +48,10 @@ public class UpdateInfo extends Service {
     }
 
     public void addUsers(){
-        mPost = new post(getApplicationContext());
-        Log.d("my_app", "JSON Data: " + DBHelper.composeJson());
+        if(DBHelper.getSizeUsers()){
+            mPost = new post(getApplicationContext());
+            Log.d("my_app", "JSON Data: " + DBHelper.composeJson());
+        }
     }
 
     public void addQuests(){

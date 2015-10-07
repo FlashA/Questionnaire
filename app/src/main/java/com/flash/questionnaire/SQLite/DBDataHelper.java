@@ -69,6 +69,21 @@ public class DBDataHelper {
 			return false;
 		}
 	}
+
+	public boolean getSizeUsers() {
+		int users = 0;
+		String query_users = "SELECT COUNT(*) FROM " + Constants.TABLE_NAME_USERS;
+		Cursor cursor_users = database.rawQuery(query_users, null);
+		cursor_users.moveToFirst();
+		users = cursor_users.getInt(0);
+		cursor_users.close();
+		if(users != 0){
+			return true;
+		} else{
+			return false;
+		}
+	}
+
 	public ArrayList<String> getQuests() {
 		ArrayList<String> list = new ArrayList<String>();
 		String query = "SELECT name FROM quests";

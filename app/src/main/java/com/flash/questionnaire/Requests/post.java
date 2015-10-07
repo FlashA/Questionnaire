@@ -5,9 +5,6 @@ import android.content.Context;
 import com.flash.questionnaire.SQLite.DBDataHelper;
 import com.flash.questionnaire.Utils.Constants;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -68,18 +65,5 @@ public class post {
             e.printStackTrace();
             return false;
         }
-    }
-
-    public boolean getStatus(String json){
-        JSONObject object = null;
-        boolean status = false;
-        try{
-            object = new JSONObject(json);
-            if(object.getString("status").equals("success")) status = true;
-        } catch (JSONException e){
-            status = false;
-            e.printStackTrace();
-        }
-        return status;
     }
 }
