@@ -2,6 +2,7 @@ package com.flash.questionnaire.Fragments;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.flash.questionnaire.Design.MenuActivity;
 import com.flash.questionnaire.Models.Answers;
 import com.flash.questionnaire.R;
 import com.flash.questionnaire.SQLite.DBDataHelper;
@@ -21,7 +23,7 @@ public class FirstFragment extends Fragment {
     private Button button_next;
     private Button button_m;
     private Button button_f;
-
+    private Button button_exit;
     private TextView textView;
 
     private DBDataHelper database;
@@ -60,6 +62,15 @@ public class FirstFragment extends Fragment {
             public void onClick(View v) {
                 answers.setSex("М");
                 goFragment();
+            }
+        });
+        button_exit = (Button) view.findViewById(R.id.button_exit);
+        button_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MenuActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
     }
