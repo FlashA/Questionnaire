@@ -36,13 +36,13 @@ public class post {
     private DBDataHelper DBHelper;
 
     public post(String url, String sex,
-                final String fio, String prev_quest,
-                String ref, String rev,
-                final String mail, final String tel, final Context context){
+                final String fio, String ref,
+                String rev, final String mail,
+                final String tel, final Context context){
         this.url = url;
         this.sex = sex;
         this.fio = fio;
-        this.prev_quest = prev_quest;
+        //this.prev_quest = prev_quest;
         this.ref = ref;
         this.rev = rev;
         this.mail = mail;
@@ -72,7 +72,7 @@ public class post {
 
             String urlParameters = "sex=" + URLEncoder.encode(sex, "UTF-8") +
                     "&fio=" + URLEncoder.encode(fio, "UTF-8") +
-                    "&prev_quest="+ URLEncoder.encode(prev_quest, "UTF-8") +
+                    //"&prev_quest="+ URLEncoder.encode(prev_quest, "UTF-8") +
                     "&ref="+ URLEncoder.encode(ref, "UTF-8") +
                     "&rev=" + URLEncoder.encode(rev, "UTF-8") +
                     "&mail=" + URLEncoder.encode(mail, "UTF-8") +

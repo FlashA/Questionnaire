@@ -10,7 +10,7 @@ public class Answers implements Parcelable {
 
     private String sex;
     private String fio;
-    private String prev_quest;
+    //private String prev_quest;
     private String ref;
     private String rev;
     private String mail;
@@ -21,7 +21,7 @@ public class Answers implements Parcelable {
     protected Answers(Parcel in) {
         sex = in.readString();
         fio = in.readString();
-        prev_quest = in.readString();
+        //prev_quest = in.readString();
         ref = in.readString();
         rev = in.readString();
         mail = in.readString();
@@ -56,13 +56,13 @@ public class Answers implements Parcelable {
         this.fio = fio;
     }
 
-    public String getPrev_quest() {
+    /*public String getPrev_quest() {
         return prev_quest;
-    }
+    }*/
 
-    public void setPrev_quest(String prev_quest) {
+    /*public void setPrev_quest(String prev_quest) {
         this.prev_quest = prev_quest;
-    }
+    }*/
 
     public String getRef() {
         return ref;
@@ -105,7 +105,7 @@ public class Answers implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(sex);
         dest.writeString(fio);
-        dest.writeString(prev_quest);
+        //dest.writeString(prev_quest);
         dest.writeString(ref);
         dest.writeString(rev);
         dest.writeString(mail);

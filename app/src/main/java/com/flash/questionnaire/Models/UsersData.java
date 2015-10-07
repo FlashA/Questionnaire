@@ -7,7 +7,7 @@ public class UsersData {
 
     private String sex;
     private String fio;
-    private String prev_quest;
+    //private String prev_quest;
     private String ref;
     private String rev;
     private String mail;
@@ -29,13 +29,13 @@ public class UsersData {
         this.fio = fio;
     }
 
-    public String getPrev_quest() {
+    /*public String getPrev_quest() {
         return prev_quest;
     }
 
     public void setPrev_quest(String prev_quest) {
         this.prev_quest = prev_quest;
-    }
+    }*/
 
     public String getRef() {
         return ref;

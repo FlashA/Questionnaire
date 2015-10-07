@@ -57,7 +57,6 @@ public class UpdateInfo extends Service {
             mPost = new post(Constants.API_URL_POST,
                     users.get(i).getSex(),
                     users.get(i).getFio(),
-                    users.get(i).getPrev_quest(),
                     users.get(i).getRef(),
                     users.get(i).getRev(),
                     users.get(i).getMail(),

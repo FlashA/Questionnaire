@@ -35,11 +35,10 @@ public class DBDataHelper {
 				UsersData usersData = new UsersData();
 				usersData.setSex(cursor.getString(1));
 				usersData.setFio(cursor.getString(2));
-				usersData.setPrev_quest(cursor.getString(3));
-				usersData.setRef(cursor.getString(4));
-				usersData.setRev(cursor.getString(5));
-				usersData.setMail(cursor.getString(6));
-				usersData.setTel(cursor.getString(7));
+				usersData.setRef(cursor.getString(3));
+				usersData.setRev(cursor.getString(4));
+				usersData.setMail(cursor.getString(5));
+				usersData.setTel(cursor.getString(6));
 				users.add(usersData);
 			} while(cursor.moveToNext());
 		}
@@ -113,12 +112,11 @@ public class DBDataHelper {
 	}
 
 	public void addUserAnswers(String sex, String fio,
-							   String prev_quest, String ref,
-							   String rev, String mail, String tel){
+							   String ref, String rev,
+							   String mail, String tel){
 		ContentValues values = new ContentValues();
 		values.put("sex", sex);
 		values.put("fio", fio);
-		values.put("prev_quest", prev_quest);
 		values.put("ref", ref);
 		values.put("rev", rev);
 		values.put("mail", mail);
