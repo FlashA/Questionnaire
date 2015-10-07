@@ -16,8 +16,6 @@ import com.flash.questionnaire.Requests.post;
 import com.flash.questionnaire.SQLite.DBDataHelper;
 import com.flash.questionnaire.Utils.Constants;
 
-import java.util.ArrayList;
-
 /**
  * Created by fdh on 20.09.15.
  */
@@ -40,9 +38,7 @@ public class UpdateInfo extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(isOnline()){
             addQuests();
-            addUsers();
-        } else{
-            Log.d("my_app", "noInternet");
+            //addUsers();
         }
         return START_NOT_STICKY;
     }
@@ -52,17 +48,8 @@ public class UpdateInfo extends Service {
     }
 
     public void addUsers(){
-        ArrayList<UsersData> users = DBHelper.getUsers();
-        for (int i = 0; i < users.size(); i++) {
-            mPost = new post(Constants.API_URL_POST,
-                    users.get(i).getSex(),
-                    users.get(i).getFio(),
-                    users.get(i).getRef(),
-                    users.get(i).getRev(),
-                    users.get(i).getMail(),
-                    users.get(i).getTel(),
-                    getApplicationContext());
-        }
+        mPost = new post(getApplicationContext());
+        Log.d("my_app", "JSON Data: " + DBHelper.composeJson());
     }
 
     public void addQuests(){
