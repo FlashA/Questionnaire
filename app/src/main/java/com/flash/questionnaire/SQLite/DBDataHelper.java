@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.flash.questionnaire.Models.Quest;
-import com.flash.questionnaire.Models.UsersData;
 import com.flash.questionnaire.Utils.Constants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,25 +26,6 @@ public class DBDataHelper {
 	public void openDB() {
 	 	DBOpenHelper dbOpenHelper = new DBOpenHelper(context, Constants.DATABASE_NAME);
 	 	database = dbOpenHelper.openDataBase();
-	}
-
-	public ArrayList<UsersData> getUsers(){
-		ArrayList<UsersData> users = new ArrayList<UsersData>();
-		String query = "SELECT * FROM " + Constants.TABLE_NAME_USERS;
-		Cursor cursor = database.rawQuery(query, null);
-		if(cursor.moveToFirst()){
-			do{
-				UsersData usersData = new UsersData();
-				usersData.setSex(cursor.getString(1));
-				usersData.setFio(cursor.getString(2));
-				usersData.setRef(cursor.getString(3));
-				usersData.setRev(cursor.getString(4));
-				usersData.setMail(cursor.getString(5));
-				usersData.setTel(cursor.getString(6));
-				users.add(usersData);
-			} while(cursor.moveToNext());
-		}
-		return users;
 	}
 
 	public String composeJson(){

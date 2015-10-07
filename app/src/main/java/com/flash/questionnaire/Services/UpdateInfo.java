@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.flash.questionnaire.Models.Quest;
 import com.flash.questionnaire.Models.UsersData;
@@ -37,7 +38,7 @@ public class UpdateInfo extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(isOnline()){
             addQuests();
-            addUsers();
+            //addUsers();
         }
         return START_NOT_STICKY;
     }
@@ -48,6 +49,7 @@ public class UpdateInfo extends Service {
 
     public void addUsers(){
         mPost = new post(getApplicationContext());
+        Log.d("my_app", "JSON Data: " + DBHelper.composeJson());
     }
 
     public void addQuests(){
