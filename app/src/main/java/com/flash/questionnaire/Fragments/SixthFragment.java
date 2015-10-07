@@ -1,10 +1,8 @@
 package com.flash.questionnaire.Fragments;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.res.Configuration;
-import android.content.res.Resources;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.flash.questionnaire.Design.ThanksActivity;
 import com.flash.questionnaire.Models.Answers;
 import com.flash.questionnaire.R;
 import com.flash.questionnaire.SQLite.DBDataHelper;
-
-import java.util.Locale;
 
 /**
  * Created by Anton on 22.09.2015.
@@ -40,39 +37,17 @@ public class SixthFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        changeLanguage();
         View view = inflater.inflate(R.layout.fragment_sixth, container, false);
         database = new DBDataHelper(getActivity());
         initButton(view);
-
         initEditText(view);
+
 
         id = getArguments().getInt("Quest");
         answers = getArguments().getParcelable("answers");
 
         setQuestion(view);
-
         return view;
-    }
-
-    private void initButton(View view) {
-        button_next = (Button) view.findViewById(R.id.button_next);
-        button_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setText();
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                Bundle bundle = new Bundle();
-                bundle.putInt("Quest", id);
-                bundle.putParcelable("answers", answers);
-                SeventhFragment fragment = new SeventhFragment();
-                fragment.setArguments(bundle);
-                hideKeyboard();
-                ft.replace(R.id.container, fragment);
-                ft.addToBackStack(null);
-                ft.commit();
-            }
-        });
     }
 
     private void initEditText(View view){
@@ -80,34 +55,43 @@ public class SixthFragment extends Fragment {
     }
 
     private void setText(){
-        if(!getText().equals("")) answers.setMail(editText_f.getText().toString());
-
+        if(!getText().equals("")) answers.setRev(editText_f.getText().toString());
     }
 
     private String getText(){
         return editText_f.getText().toString();
     }
 
+    private void initButton(View view) {
+        button_next = (Button) view.findViewById(R.id.button_next);
+        button_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+              /*    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                Bundle bundle = new Bundle();
+                bundle.putInt("Quest", id);
+                bundle.putParcelable("answers", answers);
+                Fifth5Fragment fragment = new Fifth5Fragment();
+                fragment.setArguments(bundle);
+                hideKeyboard();
+                ft.replace(R.id.container, fragment);
+                ft.addToBackStack(null);
+                ft.commit();
+                */
+                setText();
+                Intent intent = new Intent(getActivity(), ThanksActivity.class);
+                intent.putExtra("answer", answers);
+                hideKeyboard();
+                startActivity(intent);
+                getActivity().finish();
+
+            }
+        });
+    }
     private void setQuestion(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
-        textView.setText(database.getQuestions(id, 6));
-    }
-
-    private void changeLanguage() {
-      /*  Resources res = getActivity().getResources();
-
-        Locale locale = new Locale("en"); //<--- use your locale code here
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.locale = locale;
-
-        res.updateConfiguration(config, res.getDisplayMetrics());
-    */
-        Configuration config = new Configuration(getResources().getConfiguration());
-        config.locale = Locale.GERMAN ;
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-
+        textView.setText(database.getQuestions(id, 4));
     }
     private void hideKeyboard() {
         View view = getActivity().getCurrentFocus();
@@ -116,5 +100,4 @@ public class SixthFragment extends Fragment {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
-
 }

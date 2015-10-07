@@ -21,7 +21,7 @@ import com.flash.questionnaire.SQLite.DBDataHelper;
 /**
  * Created by Anton on 22.09.2015.
  */
-public class FourthFragment extends Fragment {
+public class ThirdFragment extends Fragment {
 
     private Button button_next;
 
@@ -50,7 +50,7 @@ public class FourthFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fourth, container, false);
+        View view = inflater.inflate(R.layout.fragment_third, container, false);
         database = new DBDataHelper(getActivity());
         initButton(view);
         initCheckBox(view);
@@ -75,7 +75,7 @@ public class FourthFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putInt("Quest", id);
                     bundle.putParcelable("answers", answers);
-                    FifthFragment fragment = new FifthFragment();
+                    Fourth1Fragment fragment = new Fourth1Fragment();
                     fragment.setArguments(bundle);
                     hideKeyboard();
                     ft.replace(R.id.container, fragment);
@@ -143,7 +143,7 @@ public class FourthFragment extends Fragment {
 
     private void setQuestion(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
-        textView.setText(database.getQuestions(id, 4));
+        textView.setText(database.getQuestions(id, 3));
     }
     private void hideKeyboard() {
         View view = getActivity().getCurrentFocus();

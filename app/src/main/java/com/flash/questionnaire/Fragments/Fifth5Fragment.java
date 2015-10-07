@@ -1,8 +1,9 @@
 package com.flash.questionnaire.Fragments;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,15 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.flash.questionnaire.Design.ThanksActivity;
 import com.flash.questionnaire.Models.Answers;
 import com.flash.questionnaire.R;
 import com.flash.questionnaire.SQLite.DBDataHelper;
 
+import java.util.Locale;
+
 /**
  * Created by Anton on 22.09.2015.
  */
-public class SeventhFragment extends Fragment {
+public class Fifth5Fragment extends Fragment {
 
     private Button button_next;
 
@@ -37,17 +39,18 @@ public class SeventhFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_seventh, container, false);
+        changeLanguage();
+        View view = inflater.inflate(R.layout.fragment_fifth5, container, false);
         database = new DBDataHelper(getActivity());
         initButton(view);
+
         initEditText(view);
-
-
 
         id = getArguments().getInt("Quest");
         answers = getArguments().getParcelable("answers");
 
         setQuestion(view);
+
         return view;
     }
 
@@ -57,11 +60,16 @@ public class SeventhFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 setText();
-                Intent intent = new Intent(getActivity(), ThanksActivity.class);
-                intent.putExtra("answer", answers);
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                Bundle bundle = new Bundle();
+                bundle.putInt("Quest", id);
+                bundle.putParcelable("answers", answers);
+                SixthFragment fragment = new SixthFragment();
+                fragment.setArguments(bundle);
                 hideKeyboard();
-                startActivity(intent);
-                getActivity().finish();
+                ft.replace(R.id.container, fragment);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
     }
@@ -71,7 +79,8 @@ public class SeventhFragment extends Fragment {
     }
 
     private void setText(){
-        if(!getText().equals("")) answers.setTel(editText_f.getText().toString());
+        if(!getText().equals("")) answers.setMail(editText_f.getText().toString());
+
     }
 
     private String getText(){
@@ -80,7 +89,24 @@ public class SeventhFragment extends Fragment {
 
     private void setQuestion(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
-        textView.setText(database.getQuestions(id, 7));
+        textView.setText(database.getQuestions(id, 5));
+    }
+
+    private void changeLanguage() {
+      /*  Resources res = getActivity().getResources();
+
+        Locale locale = new Locale("en"); //<--- use your locale code here
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.locale = locale;
+
+        res.updateConfiguration(config, res.getDisplayMetrics());
+    */
+        Configuration config = new Configuration(getResources().getConfiguration());
+        config.locale = Locale.GERMAN ;
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
     }
     private void hideKeyboard() {
         View view = getActivity().getCurrentFocus();
@@ -89,4 +115,5 @@ public class SeventhFragment extends Fragment {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
+
 }

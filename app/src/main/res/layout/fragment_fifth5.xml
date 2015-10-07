@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_fifth"
+    android:id="@+id/fragment_sixth"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp">
@@ -19,9 +19,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Помогите стать нам лучше. Мы ценим любые отзывы!  Напишите свои пожелания по улучшению игрового процесса на любом этапе. Напишите Ваши пожелания, чего вам не хватило, что вы бы хотели изменить! (Ответ необязателен)"
+            android:text="Во время игры наши Администраторы внимательно следили за вами и сделали несколько увлекательных фотографий, все они будут размещены в закрытой группе вконтакте, для получения приглашения в эту группу оставьте свой Email адрес. (Ответ необязателен)"
             android:id="@+id/textView"
-            android:textSize="36sp"
+            android:textSize="24sp"
             android:textColor="@color/text_main" />
 
         <EditText
@@ -29,8 +29,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/editText_f"
             android:backgroundTint="@color/text_main"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
             android:textColor="@color/text_main"
-            android:inputType="textMultiLine|textCapSentences"
             android:textCursorDrawable="@null"
             android:textColorHint="@color/text_main" />
     </LinearLayout>
@@ -44,8 +45,7 @@
         android:onClick="next"
         android:background="@color/button_green"
         android:textColor="@color/text_main"
-        android:layout_margin="50dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true" />
-
 </RelativeLayout>
