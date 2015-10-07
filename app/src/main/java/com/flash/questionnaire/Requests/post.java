@@ -1,9 +1,9 @@
 package com.flash.questionnaire.Requests;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.flash.questionnaire.SQLite.DBDataHelper;
+import com.flash.questionnaire.Utils.Constants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,41 +21,17 @@ import java.net.URLEncoder;
  */
 public class post {
 
-    private String sex;
-    private String fio;
-    private String prev_quest;
-    private String ref;
-    private String rev;
-    private String mail;
-    private String tel;
-
-    private String url;
-
     private StringBuffer response;
 
     private DBDataHelper DBHelper;
 
-    public post(String url, String sex,
-                final String fio, String ref,
-                String rev, final String mail,
-                final String tel, final Context context){
-        this.url = url;
-        this.sex = sex;
-        this.fio = fio;
-        //this.prev_quest = prev_quest;
-        this.ref = ref;
-        this.rev = rev;
-        this.mail = mail;
-        this.tel = tel;
+    public post(final Context context){
         DBHelper = new DBDataHelper(context);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    if(sendPost()){
-                        Log.d("my_app", "Чистим пользователя");
-                        DBHelper.clearRecordUser(tel);
-                    }
+                    if(sendPost()) DBHelper.clearTableUsers();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -65,18 +41,12 @@ public class post {
 
     public boolean sendPost() throws Exception  {
         try{
-            URL obj = new URL(url);
+            URL obj = new URL(Constants.API_URL_POST);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestMethod("POST");
             con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
-            String urlParameters = "sex=" + URLEncoder.encode(sex, "UTF-8") +
-                    "&fio=" + URLEncoder.encode(fio, "UTF-8") +
-                    //"&prev_quest="+ URLEncoder.encode(prev_quest, "UTF-8") +
-                    "&ref="+ URLEncoder.encode(ref, "UTF-8") +
-                    "&rev=" + URLEncoder.encode(rev, "UTF-8") +
-                    "&mail=" + URLEncoder.encode(mail, "UTF-8") +
-                    "&tel=" + URLEncoder.encode(tel, "UTF-8");
+            String urlParameters = "users=" + URLEncoder.encode(DBHelper.composeJson(), "UTF-8");
 
             con.setDoOutput(true);
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());

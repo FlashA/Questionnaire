@@ -48,7 +48,7 @@ public class DBDataHelper {
 		return users;
 	}
 
-	public String composeJSONfromSQLite(){
+	public String composeJson(){
 		ArrayList<HashMap<String, String>> wordList;
 		wordList = new ArrayList<HashMap<String, String>>();
 		String query = "SELECT * FROM " + Constants.TABLE_NAME_USERS;
@@ -56,18 +56,17 @@ public class DBDataHelper {
 		if (cursor.moveToFirst()) {
 			do {
 				HashMap<String, String> map = new HashMap<String, String>();
-				map.put("userId", cursor.getString(0));
-				map.put("userName", cursor.getString(1));
-				map.put("userName", cursor.getString(1));
-				map.put("userName", cursor.getString(1));
-				map.put("userName", cursor.getString(1));
-				map.put("userName", cursor.getString(1));
+				map.put("sex", cursor.getString(1));
+				map.put("fio", cursor.getString(2));
+				map.put("ref", cursor.getString(3));
+				map.put("rev", cursor.getString(4));
+				map.put("mail", cursor.getString(5));
+				map.put("tel", cursor.getString(6));
 				wordList.add(map);
 			} while (cursor.moveToNext());
 		}
 		database.close();
 		Gson gson = new GsonBuilder().create();
-		//Use GSON to serialize Array List to JSON
 		return gson.toJson(wordList);
 	}
 
@@ -154,12 +153,12 @@ public class DBDataHelper {
 		database.execSQL("DELETE FROM " + Constants.TABLE_NAME_ISSUE);
 	}
 
-	public void clearRecordUser(String tel){
-		database.delete("users", "tel = " + tel, null);
-	}
-
 	public void clearTableQuests(){
 		database.execSQL("DELETE FROM " + Constants.TABLE_NAME_QUESTS);
+	}
+
+	public void clearTableUsers(){
+		database.execSQL("DELETE FROM " + Constants.TABLE_NAME_USERS);
 	}
 
 	public String getPassword() {
