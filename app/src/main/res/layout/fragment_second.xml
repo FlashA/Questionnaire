@@ -34,16 +34,6 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_f"
-            android:backgroundTint="@color/text_main"
-            android:hint="Фамилия"
-            android:textColor="@color/text_main"
-            android:inputType="textCapWords"
-            android:textCursorDrawable="@null"
-            android:textColorHint="@color/text_main" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/editText_io"
             android:backgroundTint="@color/text_main"
             android:hint="Имя Отчество"
