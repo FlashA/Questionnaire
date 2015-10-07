@@ -72,7 +72,7 @@ public class SixthFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putInt("Quest", id);
                 bundle.putParcelable("answers", answers);
-                Fifth5Fragment fragment = new Fifth5Fragment();
+                FifthFragment fragment = new FifthFragment();
                 fragment.setArguments(bundle);
                 hideKeyboard();
                 ft.replace(R.id.container, fragment);

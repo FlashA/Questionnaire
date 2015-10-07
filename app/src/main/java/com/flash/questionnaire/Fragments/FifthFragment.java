@@ -22,7 +22,7 @@ import java.util.Locale;
 /**
  * Created by Anton on 22.09.2015.
  */
-public class Fifth5Fragment extends Fragment {
+public class FifthFragment extends Fragment {
 
     private Button button_next;
 
@@ -40,7 +40,7 @@ public class Fifth5Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         changeLanguage();
-        View view = inflater.inflate(R.layout.fragment_fifth5, container, false);
+        View view = inflater.inflate(R.layout.fragment_fifth, container, false);
         database = new DBDataHelper(getActivity());
         initButton(view);
 
