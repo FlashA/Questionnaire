@@ -42,6 +42,7 @@ public class DBDataHelper {
 				map.put("rev", cursor.getString(4));
 				map.put("mail", cursor.getString(5));
 				map.put("tel", cursor.getString(6));
+				map.put("id", cursor.getString(7));
 				wordList.add(map);
 			} while (cursor.moveToNext());
 		}
@@ -131,7 +132,7 @@ public class DBDataHelper {
 		database.insert(Constants.TABLE_NAME_ISSUE, null, values);
 	}
 
-	public void addUserAnswers(String sex, String fio,
+	public void addUserAnswers(String id, String sex, String fio,
 							   String ref, String rev,
 							   String mail, String tel){
 		ContentValues values = new ContentValues();
@@ -141,6 +142,7 @@ public class DBDataHelper {
 		values.put("rev", rev);
 		values.put("mail", mail);
 		values.put("tel", tel);
+		values.put("id_quest", id);
 		database.insert(Constants.TABLE_NAME_USERS, null, values);
 	}
 

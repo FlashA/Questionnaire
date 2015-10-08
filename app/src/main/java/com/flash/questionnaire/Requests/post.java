@@ -28,7 +28,9 @@ public class post {
             @Override
             public void run() {
                 try {
-                    if(sendPost()) DBHelper.clearTableUsers();
+                    if(sendPost()) {
+                        DBHelper.clearTableUsers();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

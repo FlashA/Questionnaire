@@ -29,7 +29,8 @@ public class ThanksActivity extends QuestionnaireApplication {
         Intent intent = getIntent();
         answers = intent.getParcelableExtra("answer");
 
-        DBHelper.addUserAnswers(answers.getSex(),
+        DBHelper.addUserAnswers(answers.getId(),
+                answers.getSex(),
                 answers.getFio(),
                 answers.getRef(),
                 answers.getRev(),

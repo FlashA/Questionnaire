@@ -51,6 +51,7 @@ public class FirstFragment extends Fragment {
         button_f.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                answers.setId(Integer.toString(id));
                 answers.setSex("Ж");
                 goFragment();
             }
@@ -60,6 +61,7 @@ public class FirstFragment extends Fragment {
         button_m.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                answers.setId(Integer.toString(id));
                 answers.setSex("М");
                 goFragment();
             }

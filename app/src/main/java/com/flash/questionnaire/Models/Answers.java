@@ -8,9 +8,9 @@ import android.os.Parcelable;
  */
 public class Answers implements Parcelable {
 
+    private String id;
     private String sex;
     private String fio;
-    //private String prev_quest;
     private String ref;
     private String rev;
     private String mail;
@@ -19,9 +19,9 @@ public class Answers implements Parcelable {
     public Answers(){}
 
     protected Answers(Parcel in) {
+        id = in.readString();
         sex = in.readString();
         fio = in.readString();
-        //prev_quest = in.readString();
         ref = in.readString();
         rev = in.readString();
         mail = in.readString();
@@ -40,6 +40,14 @@ public class Answers implements Parcelable {
         }
     };
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getSex() {
         return sex;
     }
@@ -55,14 +63,6 @@ public class Answers implements Parcelable {
     public void setFio(String fio) {
         this.fio = fio;
     }
-
-    /*public String getPrev_quest() {
-        return prev_quest;
-    }*/
-
-    /*public void setPrev_quest(String prev_quest) {
-        this.prev_quest = prev_quest;
-    }*/
 
     public String getRef() {
         return ref;
@@ -103,9 +103,9 @@ public class Answers implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
         dest.writeString(sex);
         dest.writeString(fio);
-        //dest.writeString(prev_quest);
         dest.writeString(ref);
         dest.writeString(rev);
         dest.writeString(mail);

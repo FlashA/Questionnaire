@@ -62,7 +62,6 @@ public class get {
                 quest.setName(quests.getString("name"));
                 quest.setSex(quests.getString("sex"));
                 quest.setFio(quests.getString("fio"));
-                //quest.setPrev_quest(quests.getString("prev_quest"));
                 quest.setRef(quests.getString("ref"));
                 quest.setRev(quests.getString("rev"));
                 quest.setMail(quests.getString("mail"));
@@ -72,7 +71,6 @@ public class get {
 
                 DBHelper.addIssue(quest.getId(), quest.getSex());
                 DBHelper.addIssue(quest.getId(), quest.getFio());
-                //DBHelper.addIssue(quest.getId(), quest.getPrev_quest());
                 DBHelper.addIssue(quest.getId(), quest.getRef());
                 DBHelper.addIssue(quest.getId(), quest.getRev());
                 DBHelper.addIssue(quest.getId(), quest.getMail());
