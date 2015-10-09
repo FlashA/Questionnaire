@@ -4,12 +4,15 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +20,9 @@ import android.widget.Toast;
 import com.flash.questionnaire.Models.Answers;
 import com.flash.questionnaire.R;
 import com.flash.questionnaire.SQLite.DBDataHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Anton on 22.09.2015.
@@ -47,6 +53,11 @@ public class ThirdFragment extends Fragment {
 
     private int i;
 
+
+    private int checkedNumber = 0;
+
+    private List<String> listForResult=new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,7 +80,9 @@ public class ThirdFragment extends Fragment {
         button_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (checkChoosing()) {
+                if (checkSelected()) {
+
+                    if(!editText_another.getText().toString().equals("")) mergeTextEditText(editText_another);
                     setData();
                     final FragmentTransaction ft = getFragmentManager().beginTransaction();
                     Bundle bundle = new Bundle();
@@ -89,7 +102,7 @@ public class ThirdFragment extends Fragment {
     }
 
     private void setData(){
-        if(checkBox_1.isChecked()) mergeText(checkBox_1);
+     /*   if(checkBox_1.isChecked()) mergeText(checkBox_1);
         if(checkBox_2.isChecked()) mergeText(checkBox_2);
         if(checkBox_3.isChecked()) mergeText(checkBox_3);
         if(checkBox_4.isChecked()) mergeText(checkBox_4);
@@ -98,49 +111,128 @@ public class ThirdFragment extends Fragment {
         if(checkBox_7.isChecked()) mergeText(checkBox_7);
         if(checkBox_8.isChecked()) mergeText(checkBox_8);
         if(checkBox_9.isChecked()) mergeText(checkBox_9);
-        if(!editText_another.getText().toString().equals("")) mergeTextEditText(editText_another);
+        if(!editText_another.getText().toString().equals("")) mergeTextEditText(editText_another);*/
+        answers.setRef(listToString());
+
     }
 
-    private boolean checkChoosing(){
-        if(checkBox_1.isChecked() ||
-                checkBox_2.isChecked() ||
-                checkBox_3.isChecked() ||
-                checkBox_4.isChecked() ||
-                checkBox_5.isChecked() ||
-                checkBox_6.isChecked() ||
-                checkBox_7.isChecked() ||
-                checkBox_8.isChecked() ||
-                checkBox_9.isChecked() ||
-                !editText_another.getText().toString().equals("")) return true;
-        else return false;
+    private boolean checkSelected(){
+        if(checkedNumber==0 ||
+                editText_another.getText().toString().equals("")) return false;
+        else return true;
     }
+
+  /*  private void mergeText(CheckBox checkBox){
+        if(answers.getRef() == null || answers.getRef().equals("")) answers.setRef(checkBox.getText().toString());
+        else answers.setRef(answers.getRef() + ";" + checkBox.getText().toString());
+    }*/
 
     private void mergeText(CheckBox checkBox){
-        if(answers.getRef() == null) answers.setRef(checkBox.getText().toString());
-        else answers.setRef(answers.getRef() + ";" + checkBox.getText().toString());
+        if (!listForResult.contains(checkBox.getText().toString())) {
+            listForResult.add(checkBox.getText().toString());
+        }
     }
 
+ /*   private void removeText(CheckBox checkBox){
+        String forReplace = answers.getRef();
+        String replaced;
+        if (checkedNumber==0) {
+            answers.setRef(null);
+        } else if (checkedNumber==1) {
+            replaced=forReplace.replace(checkBox.getText().toString(), "");
+            answers.setRef(replaced);
+        } else {
+          //  answers.setRef(answers.getRef().replace(";"+checkBox.getText().toString(), ""));
+            replaced=forReplace.replace(";"+checkBox.getText().toString(), "");
+            answers.setRef(replaced);
+        }
+
+    }*/
+
+    private void removeText(CheckBox checkBox){
+        listForResult.remove(checkBox.getText().toString());
+    }
+
+    private String listToString() {
+        String result = "";
+        for (String str : listForResult) {
+            result+= str+";";
+        }
+       // int index = result.lastIndexOf(";");
+      //  result = result.;
+        return removeLastChar(result);
+    }
     private void mergeTextEditText(EditText editText){
-        if(answers.getRef() == null) answers.setRef(editText.getText().toString());
-        else answers.setRef(answers.getRef() + ";" + editText.getText().toString());
+     //   if(answers.getRef() == null) answers.setRef(editText.getText().toString());
+   //     else answers.setRef(answers.getRef() + ";" + editText.getText().toString());
+        if (!listForResult.contains(editText.getText().toString())) {
+            listForResult.add(editText.getText().toString());
+        }
     }
 
+    public String removeLastChar(String s) {
+        if (s == null || s.length() == 0) {
+            return s;
+        }
+        return s.substring(0, s.length()-1);
+    }
     private void initEditText(View view){
         editText_another = (EditText) view.findViewById(R.id.editText_another);
     }
 
     private void initCheckBox(View view){
         checkBox_1 = (CheckBox) view.findViewById(R.id.checkBox);
+        addTextManager(checkBox_1);
         checkBox_2 = (CheckBox) view.findViewById(R.id.checkBox2);
+        addTextManager(checkBox_2);
         checkBox_3 = (CheckBox) view.findViewById(R.id.checkBox3);
+        addTextManager(checkBox_3);
         checkBox_4 = (CheckBox) view.findViewById(R.id.checkBox4);
+        addTextManager(checkBox_4);
         checkBox_5 = (CheckBox) view.findViewById(R.id.checkBox5);
+        addTextManager(checkBox_5);
         checkBox_6 = (CheckBox) view.findViewById(R.id.checkBox6);
+        addTextManager(checkBox_6);
         checkBox_7 = (CheckBox) view.findViewById(R.id.checkBox7);
+        addTextManager(checkBox_7);
         checkBox_8 = (CheckBox) view.findViewById(R.id.checkBox8);
+        addTextManager(checkBox_8);
         checkBox_9 = (CheckBox) view.findViewById(R.id.checkBox9);
+        addTextManager(checkBox_9);
+
     }
 
+    private void addTextManager(final CheckBox checkBox) {
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    //   Toast.makeText(finalView.getContext(), answers.getPrev_quest(), Toast.LENGTH_SHORT).show();
+                    mergeText(checkBox);
+              //      Log.d("my_app", answers.getRef());
+                    checkedNumber++;
+                    Log.d("my_app", Integer.toString(checkedNumber));
+
+                    // Toast.makeText(finalView.getContext(), answers.getPrev_quest(), Toast.LENGTH_SHORT).show();
+                } else {
+                    checkedNumber--;
+                    removeText(checkBox);
+
+                    Log.d("my_app", Integer.toString(checkedNumber));
+
+
+                  //  Log.d("my_app", answers.getRef());
+
+                }
+                try{
+                    Log.d("my_app", listToString());
+                }catch (NullPointerException ex) {
+                    Log.d("my_app", "listToString(): "+ex);
+                }
+            }
+        });
+
+    }
     private void setQuestion(View view) {
         textView = (TextView) view.findViewById(R.id.textView);
         textView.setText(database.getQuestions(id, 3));
