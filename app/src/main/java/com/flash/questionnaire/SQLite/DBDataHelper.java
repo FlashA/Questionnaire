@@ -46,8 +46,10 @@ public class DBDataHelper {
 				wordList.add(map);
 			} while (cursor.moveToNext());
 		}
-		database.close();
+		cursor.close();
+		//database.close();
 		Gson gson = new GsonBuilder().create();
+
 		return gson.toJson(wordList);
 	}
 
