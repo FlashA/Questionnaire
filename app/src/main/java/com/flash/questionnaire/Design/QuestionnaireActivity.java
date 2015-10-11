@@ -57,7 +57,7 @@ public class QuestionnaireActivity extends QuestionnaireApplication {
             case "Гарри Поттер":
                 container.setBackgroundResource(R.drawable.garri_potter2);
                 break;
-
+            default: container.setBackgroundColor(getColor(R.color.background_main));
             }
         } catch (Exception ex ) {
 

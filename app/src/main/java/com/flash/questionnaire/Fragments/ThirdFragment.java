@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,8 +80,8 @@ public class ThirdFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (checkSelected()) {
-
-                    if(!editText_another.getText().toString().equals("")) mergeTextEditText(editText_another);
+                    if (!editText_another.getText().toString().equals(""))
+                        mergeTextEditText(editText_another);
                     setData();
                     final FragmentTransaction ft = getFragmentManager().beginTransaction();
                     Bundle bundle = new Bundle();
@@ -95,6 +94,7 @@ public class ThirdFragment extends Fragment {
                     ft.addToBackStack(null);
                     ft.commit();
                 } else {
+                    Log.d("my_app", "Вернули: " + checkSelected());
                     Toast.makeText(getView().getContext(), "Сделайте выбор", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -102,24 +102,22 @@ public class ThirdFragment extends Fragment {
     }
 
     private void setData(){
-     /*   if(checkBox_1.isChecked()) mergeText(checkBox_1);
-        if(checkBox_2.isChecked()) mergeText(checkBox_2);
-        if(checkBox_3.isChecked()) mergeText(checkBox_3);
-        if(checkBox_4.isChecked()) mergeText(checkBox_4);
-        if(checkBox_5.isChecked()) mergeText(checkBox_5);
-        if(checkBox_6.isChecked()) mergeText(checkBox_6);
-        if(checkBox_7.isChecked()) mergeText(checkBox_7);
-        if(checkBox_8.isChecked()) mergeText(checkBox_8);
-        if(checkBox_9.isChecked()) mergeText(checkBox_9);
-        if(!editText_another.getText().toString().equals("")) mergeTextEditText(editText_another);*/
         answers.setRef(listToString());
 
     }
 
     private boolean checkSelected(){
-        if(checkedNumber==0 ||
-                editText_another.getText().toString().equals("")) return false;
-        else return true;
+        if(checkBox_1.isChecked() ||
+        checkBox_2.isChecked() ||
+                checkBox_3.isChecked() ||
+                checkBox_4.isChecked() ||
+                checkBox_5.isChecked() ||
+                checkBox_6.isChecked() ||
+                checkBox_7.isChecked() ||
+                checkBox_8.isChecked() ||
+                checkBox_9.isChecked() ||
+                !editText_another.getText().toString().equals("")) return true;
+        else return false;
     }
 
   /*  private void mergeText(CheckBox checkBox){
