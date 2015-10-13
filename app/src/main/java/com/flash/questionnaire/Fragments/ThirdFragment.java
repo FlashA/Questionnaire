@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,8 @@ public class ThirdFragment extends Fragment {
     private int id;
 
     private Answers answers;
+
+    private boolean hidden = false;
 
     private CheckBox checkBox_1;
     private CheckBox checkBox_2;
@@ -174,8 +177,33 @@ public class ThirdFragment extends Fragment {
         }
         return s.substring(0, s.length()-1);
     }
-    private void initEditText(View view){
+    private void initEditText(final View view){
         editText_another = (EditText) view.findViewById(R.id.editText_another);
+   /*     editText_another.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean b) {
+                LinearLayout layout=(LinearLayout) view.findViewById(R.id.linearLayout);
+                if (b) {
+                    layout.setVisibility(LinearLayout.GONE);
+                } else {
+                    layout.setVisibility(LinearLayout.VISIBLE);
+                }
+            }
+        });*/
+        final LinearLayout layout = (LinearLayout) view.findViewById(R.id.linearLayout);
+        editText_another.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (hidden) {
+                    hidden = false;
+                    layout.setVisibility(LinearLayout.VISIBLE);
+                } else {
+                    hidden = true;
+                    layout.setVisibility(LinearLayout.GONE);
+                }
+            }
+        });
     }
 
     private void initCheckBox(View view){
