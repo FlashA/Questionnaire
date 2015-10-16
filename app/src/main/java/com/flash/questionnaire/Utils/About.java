@@ -8,14 +8,14 @@ public class About {
     Developers:
 
         Maksimov Anton
-            Contants:
+            Contacts:
                 E-Mail: flashteso@gmail.com
                 Skype: flashkaa3
                 vk.com/the_flash_m
 
 
         Fridrikh Alexandr
-            Contants:
+            Contacts:
                 E-Mail: alnikf@mail.ru
                 Skype: viksolo1
                 vk.com/id19328420

@@ -7,8 +7,8 @@ public class Constants {
     public static final String DATABASE_NAME = "60.sqlite";
     public static final String DEV_PASSWORD = "c0mrades";
 
-    public static final String API_URL_GET = "http://quest.dev.sete.pw/api/quest.getList";
-    public static final String API_URL_POST = "http://quest.dev.sete.pw/api/user.addArray";
+    public static final String API_URL_GET = "http://cp.vzaperti18.ru/api/quest.getList";
+    public static final String API_URL_POST = "http://cp.vzaperti18.ru/api/user.addArray";
 
     public static final String TABLE_NAME_ISSUE = "issue";
     public static final String TABLE_NAME_QUESTS = "quests";
