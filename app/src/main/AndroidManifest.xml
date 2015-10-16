@@ -49,6 +49,10 @@
             android:name=".Design.ThanksActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".Design.AboutActivity"
+            android:screenOrientation="portrait" >
+        </activity>
         <service
             android:enabled="true"
             android:name=".Services.UpdateInfo"/>

@@ -3,6 +3,7 @@ package com.flash.questionnaire.Design;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -46,16 +47,27 @@ public class ExitDialog extends DialogFragment {
             public void onClick(View arg0) {
                 SecureHelper secureHelper = new SecureHelper(context);
                 EditText editText = (EditText) view.findViewById(R.id.editText);
-                if (secureHelper.checkPassword(editText.getText().toString())) {
+                if (secureHelper.checkPassword(editText.getText().toString()) || secureHelper.checkDevPassword(editText.getText().toString())) {
                     switch (activityID) {
                         case ID_MENU_ACTIVITY:
-                            ((MenuActivity) (getActivity())).showChooser();
+                            if (secureHelper.checkDevPassword(editText.getText().toString())) {
+                                //здесь
+                                // Toast.makeText(context, "Комрады", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(context, AboutActivity.class));
+                            } else {
+                                ((MenuActivity) (getActivity())).showChooser();
+                            }
                             break;
                         case ID_THANKS_ACTIVITY:
-                            ((ThanksActivity) (getActivity())).showChooser();
+                            if (secureHelper.checkDevPassword(editText.getText().toString())) {
+                                //здесь
+                               // Toast.makeText(context, "Комрады", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(context, AboutActivity.class));
+                            } else {
+                                ((ThanksActivity) (getActivity())).showChooser();
+                            }
                             break;
                     }
-
                     dismiss();
                 } else {
                     Toast.makeText(context, "Неверный пароль, попробуйте снова", Toast.LENGTH_SHORT).show();
